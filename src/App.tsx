@@ -2,8 +2,9 @@ import './index.css';
 import ToDoItem from './Components/ToDoItem';
 import ToDoItemProps from './Types/ToDoItemProps';
 import ToDoItemStatus from './Types/ToDoItemStatus';
-import ToDoList from './Components/ToDoList';
+import ToDoGrid from './Components/ToDoGrid';
 import ToDoItemLists from './Types/ToDoItems';
+import ToDoList from './Components/ToDoList';
 
 const toDoItemProps : ToDoItemProps[] = [{
   id: "TestId",
@@ -131,7 +132,7 @@ const toDoItemLists : ToDoItemLists = {
 export const App = () => {
   const i = 5;
   return(
-    <div className='min-h-screen bg-gray-100 flex items-center justify-center'>
+    <div className='min-h-screen bg-black flex items-center justify-center'>
       <ToDoList {...toDoItemLists} />
     </div>
   ); 
