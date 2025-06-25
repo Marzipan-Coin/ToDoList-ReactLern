@@ -37,7 +37,7 @@ const toDoItemLists : ToDoItemLists = {
       toDoItemStatus: ToDoItemStatus.Created
     },
     {
-      id: "TestId",
+      id: "TestId_1",
       name: "TestName",
       text: "TestDescription",
       completed: false,
@@ -57,7 +57,7 @@ const toDoItemLists : ToDoItemLists = {
       toDoItemStatus: ToDoItemStatus.Done
     },
     {
-      id: "TestId",
+      id: "TestId_1",
       name: "TestName",
       text: "TestDescription",
       completed: false,
@@ -77,7 +77,7 @@ const toDoItemLists : ToDoItemLists = {
       toDoItemStatus: ToDoItemStatus.InReview
     },
     {
-      id: "TestId",
+      id: "TestId_1",
       name: "TestName",
       text: "TestDescription",
       completed: false,
@@ -97,7 +97,7 @@ const toDoItemLists : ToDoItemLists = {
       toDoItemStatus: ToDoItemStatus.InWork
     },
     {
-      id: "TestId",
+      id: "TestId_1",
       name: "TestName",
       text: "TestDescription",
       completed: false,
@@ -117,7 +117,7 @@ const toDoItemLists : ToDoItemLists = {
       toDoItemStatus: ToDoItemStatus.Testing
     },
     {
-      id: "TestId",
+      id: "TestId_1",
       name: "TestName",
       text: "TestDescription",
       completed: false,

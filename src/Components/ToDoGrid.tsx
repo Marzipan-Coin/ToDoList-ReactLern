@@ -12,16 +12,24 @@ type ToDoGridProps = {
 };
 
 const ToDoGrid: React.FC<ToDoGridProps> = ({ toDoItemLists, setToDoListState }) => {
-    console.log(toDoItemLists);
+    const handleDelete = (itemToRemove: ToDoItemProps) => {
+    const updatedList = { ...toDoItemLists };
+    const updatedItems = GetToDoItems(updatedList, itemToRemove.toDoItemStatus)
+      .filter(item => item.id !== itemToRemove.id);
+
+    SetToDoItems(updatedList, itemToRemove.toDoItemStatus, updatedItems);
+    setToDoListState(updatedList);
+  };
+
     return (
         <>
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
             
-            <ToDoColumn setToDoListState={setToDoListState} toDoItemParameter={GetParameter(toDoItemLists.created, "Created")}  />
-            <ToDoColumn setToDoListState={setToDoListState} toDoItemParameter={GetParameter(toDoItemLists.inWork, "In Work")}  />
-            <ToDoColumn setToDoListState={setToDoListState} toDoItemParameter={GetParameter(toDoItemLists.inReview, "In review")}  />
-            <ToDoColumn setToDoListState={setToDoListState} toDoItemParameter={GetParameter(toDoItemLists.tesing, "Testing")}  />
-            <ToDoColumn setToDoListState={setToDoListState} toDoItemParameter={GetParameter(toDoItemLists.done, "Done")}  />
+            <ToDoColumn setToDoListState={setToDoListState} toDoItemParameter={GetParameter(toDoItemLists.created, "Created")} onDelete={handleDelete}  />
+            <ToDoColumn setToDoListState={setToDoListState} toDoItemParameter={GetParameter(toDoItemLists.inWork, "In Work")} onDelete={handleDelete}  />
+            <ToDoColumn setToDoListState={setToDoListState} toDoItemParameter={GetParameter(toDoItemLists.inReview, "In review")} onDelete={handleDelete} />
+            <ToDoColumn setToDoListState={setToDoListState} toDoItemParameter={GetParameter(toDoItemLists.tesing, "Testing")} onDelete={handleDelete} />
+            <ToDoColumn setToDoListState={setToDoListState} toDoItemParameter={GetParameter(toDoItemLists.done, "Done")} onDelete={handleDelete} />
         </div>
         </>
     );
@@ -34,15 +42,6 @@ function GetParameter(toDoItemLists : ToDoItemProps[], paramName : string) : Nam
         value: toDoItemLists
     }
 }
-
-const OnDelete = (propToRemove: ToDoItemProps, todoItemList : ToDoItemLists, stateSetter: React.Dispatch<React.SetStateAction<ToDoItemLists>>) => {
-    let props = GetToDoItems(todoItemList, propToRemove.toDoItemStatus);
-    props = props.filter(item => !props.includes(propToRemove));
-
-    SetToDoItems(todoItemList, propToRemove.toDoItemStatus, props);
-    stateSetter(todoItemList);
-
-};
 
 const GetToDoItems = (todoItemList : ToDoItemLists, toDoItemStatus : ToDoItemStatus) => {
     switch (toDoItemStatus){
@@ -72,6 +71,9 @@ const SetToDoItems = (todoItemList : ToDoItemLists, toDoItemStatus : ToDoItemSta
             break;
         case ToDoItemStatus.InWork:
             todoItemList.inWork = toDoItemProps;
+            break;
+            case ToDoItemStatus.Testing:
+            todoItemList.tesing = toDoItemProps;
             break;
     }
 };

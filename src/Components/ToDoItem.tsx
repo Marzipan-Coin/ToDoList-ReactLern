@@ -6,9 +6,10 @@ import ToDoItemLists from "../Types/ToDoItems";
 type ToDoItemParamProps = {
   toDoItemProps: ToDoItemProps;
   setToDoListState: React.Dispatch<React.SetStateAction<ToDoItemLists>>;
+    onDelete: (item: ToDoItemProps) => void;
 }
 
-const ToDoItem: React.FC<ToDoItemParamProps> = ({ toDoItemProps, setToDoListState }) => {
+const ToDoItem: React.FC<ToDoItemParamProps> = ({ toDoItemProps, setToDoListState, onDelete }) => {
     var bgColor = useCardSettings(toDoItemProps);
     var hoveredColor = useHoveredColor(toDoItemProps);
 
@@ -20,7 +21,7 @@ const ToDoItem: React.FC<ToDoItemParamProps> = ({ toDoItemProps, setToDoListStat
                 <p className="mt-2 text-slate-600 dark:text-slate-400">Description: {toDoItemProps.text}</p>
                 <p>Status: {bgColor.statusName}</p>
                 <p>IsCompleted: {toDoItemProps.completed}</p>
-                <button>Delete</button>
+                <button onClick={() => onDelete(toDoItemProps)}>Delete</button>
             </div>
         </>
     );

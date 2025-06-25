@@ -7,9 +7,10 @@ import ToDoItem from "./ToDoItem";
 type toDoColumnProps = {
     toDoItemParameter: NamedParameter<ToDoItemProps[]>;
     setToDoListState: React.Dispatch<React.SetStateAction<ToDoItemLists>>;
+    onDelete: (item: ToDoItemProps) => void;
 }
 
-const ToDoColumn : React.FC<toDoColumnProps> = ({ toDoItemParameter, setToDoListState }) => {
+const ToDoColumn : React.FC<toDoColumnProps> = ({ toDoItemParameter, setToDoListState, onDelete }) => {
     
     const toDoItems = toDoItemParameter.value;
     const name = toDoItemParameter.name;
@@ -20,7 +21,7 @@ const ToDoColumn : React.FC<toDoColumnProps> = ({ toDoItemParameter, setToDoList
                 <h2 className="text-xl font-semibold mb-4 text-yellow-700">{name}</h2>
                     <div className="space-y-4">
                         {toDoItems.map(todo => (
-                            <ToDoItem toDoItemProps={todo} setToDoListState={setToDoListState}/>
+                            <ToDoItem toDoItemProps={todo} setToDoListState={setToDoListState} onDelete={onDelete}/>
                         ))}
                     </div>
             </div>
