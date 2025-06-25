@@ -4,11 +4,15 @@ import NamedParameter from "../Utils/NamedParameter";
 import Parameter from "../Utils/Parameter";
 import ToDoItem from "./ToDoItem";
 
+type toDoColumnProps = {
+    toDoItemParameter: NamedParameter<ToDoItemProps[]>;
+    setToDoListState: React.Dispatch<React.SetStateAction<ToDoItemLists>>;
+}
 
-const ToDoColumn = (toDoItemsParameter : NamedParameter<ToDoItemProps[]>) => {
+const ToDoColumn : React.FC<toDoColumnProps> = ({ toDoItemParameter, setToDoListState }) => {
     
-    const toDoItems = toDoItemsParameter.value;
-    const name = toDoItemsParameter.name;
+    const toDoItems = toDoItemParameter.value;
+    const name = toDoItemParameter.name;
 
     return (
         <>
@@ -16,7 +20,7 @@ const ToDoColumn = (toDoItemsParameter : NamedParameter<ToDoItemProps[]>) => {
                 <h2 className="text-xl font-semibold mb-4 text-yellow-700">{name}</h2>
                     <div className="space-y-4">
                         {toDoItems.map(todo => (
-                            <ToDoItem key={todo.id} {...todo} />
+                            <ToDoItem toDoItemProps={todo} setToDoListState={setToDoListState}/>
                         ))}
                     </div>
             </div>

@@ -1,8 +1,14 @@
 import useCardSettings from "../Hooks/useCardSettings";
 import useHoveredColor from "../Hooks/useHoveredColors";
 import ToDoItemProps from "../Types/ToDoItemProps";
+import ToDoItemLists from "../Types/ToDoItems";
 
-const ToDoItem = (toDoItemProps: ToDoItemProps  ) => {
+type ToDoItemParamProps = {
+  toDoItemProps: ToDoItemProps;
+  setToDoListState: React.Dispatch<React.SetStateAction<ToDoItemLists>>;
+}
+
+const ToDoItem: React.FC<ToDoItemParamProps> = ({ toDoItemProps, setToDoListState }) => {
     var bgColor = useCardSettings(toDoItemProps);
     var hoveredColor = useHoveredColor(toDoItemProps);
 
@@ -14,6 +20,7 @@ const ToDoItem = (toDoItemProps: ToDoItemProps  ) => {
                 <p className="mt-2 text-slate-600 dark:text-slate-400">Description: {toDoItemProps.text}</p>
                 <p>Status: {bgColor.statusName}</p>
                 <p>IsCompleted: {toDoItemProps.completed}</p>
+                <button>Delete</button>
             </div>
         </>
     );
