@@ -21,7 +21,10 @@ const ToDoItem: React.FC<ToDoItemParamProps> = ({ toDoItemProps, setToDoListStat
                 <p className="mt-2 text-slate-600 dark:text-slate-400">Description: {toDoItemProps.text}</p>
                 <p>Status: {bgColor.statusName}</p>
                 <p>IsCompleted: {toDoItemProps.completed}</p>
-                <button onClick={() => onDelete(toDoItemProps)}>Delete</button>
+                <button onClick={() => onDelete(toDoItemProps)} 
+                className="mt-4 px-4 py-2 text-sm font-medium text-red-600 border border-red-500 rounded-md hover:bg-red-600 hover:text-white transition-colors duration-200">
+                    Delete
+                </button>
             </div>
         </>
     );
