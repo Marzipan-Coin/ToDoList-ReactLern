@@ -39,7 +39,7 @@ const CreateCardForm = () => {
                         className="w-40 inline-block p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 cursor-pointer"
                         value="Create Card"
                         onClick={() => {
-                            dispatch(addTodo({ ToDoItem: { id: id, name: title, text: description, toDoItemStatus: ToDoItemStatus.Created, completed: false } }));
+                            dispatch(addTodo({ ToDoItem: { id: id, name: title, description: description, toDoItemStatus: ToDoItemStatus.Created, completed: false } }));
                         }}
                     />
                     <input

@@ -17,14 +17,14 @@ export const Default: Story = {
         {
           id: "TestId",
           name: "TestName",
-          text: "TestDescription",
+          description: "TestDescription",
           completed: false,
           toDoItemStatus: ToDoItemStatus.Created
         },
         {
           id: "TestId_1",
           name: "TestName",
-          text: "TestDescription",
+          description: "TestDescription",
           completed: false,
           toDoItemStatus: ToDoItemStatus.Created
         }
@@ -33,14 +33,14 @@ export const Default: Story = {
         {
           id: "TestId",
           name: "TestName",
-          text: "TestDescription",
+          description: "TestDescription",
           completed: false,
           toDoItemStatus: ToDoItemStatus.InWork
         },
         {
           id: "TestId_1",
           name: "TestName",
-          text: "TestDescription",
+          description: "TestDescription",
           completed: false,
           toDoItemStatus: ToDoItemStatus.InWork
         }
@@ -49,14 +49,14 @@ export const Default: Story = {
         {
           id: "TestId",
           name: "TestName",
-          text: "TestDescription",
+          description: "TestDescription",
           completed: false,
           toDoItemStatus: ToDoItemStatus.InReview
         },
         {
           id: "TestId_1",
           name: "TestName",
-          text: "TestDescription",
+          description: "TestDescription",
           completed: false,
           toDoItemStatus: ToDoItemStatus.InReview
         }
@@ -65,14 +65,14 @@ export const Default: Story = {
         {
           id: "TestId",
           name: "TestName",
-          text: "TestDescription",
+          description: "TestDescription",
           completed: false,
           toDoItemStatus: ToDoItemStatus.Testing
         },
         {
           id: "TestId_1",
           name: "TestName",
-          text: "TestDescription",
+          description: "TestDescription",
           completed: false,
           toDoItemStatus: ToDoItemStatus.Testing
         }
@@ -81,14 +81,14 @@ export const Default: Story = {
         {
           id: "TestId",
           name: "TestName",
-          text: "TestDescription",
+          description: "TestDescription",
           completed: false,
           toDoItemStatus: ToDoItemStatus.Done
         },
         {
           id: "TestId_1",
           name: "TestName",
-          text: "TestDescription",
+          description: "TestDescription",
           completed: false,
           toDoItemStatus: ToDoItemStatus.Done
         }

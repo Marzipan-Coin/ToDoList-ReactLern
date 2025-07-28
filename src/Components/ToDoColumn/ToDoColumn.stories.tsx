@@ -27,7 +27,7 @@ export const OneElement: Story = {
           completed: false,
           id: "1",
           name: "Some Name",
-          text: "Some Text",
+          description: "Some Text",
           toDoItemStatus: ToDoItemStatus.Created
         }
       ]
@@ -42,35 +42,35 @@ export const FiveElement: Story = {
           completed: false,
           id: "1",
           name: "Some Name",
-          text: "Some Text",
+          description: "Some Text",
           toDoItemStatus: ToDoItemStatus.Created
         },
         {
           completed: false,
           id: "2",
           name: "Some Name",
-          text: "Some Text",
+          description: "Some Text",
           toDoItemStatus: ToDoItemStatus.Created
         },
         {
           completed: false,
           id: "3",
           name: "Some Name",
-          text: "Some Text",
+          description: "Some Text",
           toDoItemStatus: ToDoItemStatus.Created
         },
         {
           completed: false,
           id: "4",
           name: "Some Name",
-          text: "Some Text",
+          description: "Some Text",
           toDoItemStatus: ToDoItemStatus.Created
         },
         {
           completed: false,
           id: "5",
           name: "Some Name",
-          text: "Some Text",
+          description: "Some Text",
           toDoItemStatus: ToDoItemStatus.Created
         },
       ]

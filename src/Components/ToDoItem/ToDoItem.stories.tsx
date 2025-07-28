@@ -16,7 +16,7 @@ export const Created: Story = {
       completed: false,
       id: "1",
       name: "Some Task",
-      text: "Some Description",
+      description: "Some Description",
       toDoItemStatus: ToDoItemStatus.Created
     },
   };
@@ -26,7 +26,7 @@ export const InWork: Story = {
       completed: false,
       id: "1",
       name: "Some Task",
-      text: "Some Description",
+      description: "Some Description",
       toDoItemStatus: ToDoItemStatus.InWork
   },
 };
@@ -36,7 +36,7 @@ export const InReview: Story = {
       completed: false,
       id: "1",
       name: "Some Task",
-      text: "Some Description",
+      description: "Some Description",
       toDoItemStatus: ToDoItemStatus.InReview
     },
 };
@@ -46,7 +46,7 @@ export const Testing: Story = {
       completed: false,
       id: "1",
       name: "Some Task",
-      text: "Some Description",
+      description: "Some Description",
       toDoItemStatus: ToDoItemStatus.Testing
     },
 };
@@ -56,7 +56,7 @@ export const Done: Story = {
       completed: false,
       id: "1",
       name: "Some Task",
-      text: "Some Description",
+      description: "Some Description",
       toDoItemStatus: ToDoItemStatus.Done
     
   },

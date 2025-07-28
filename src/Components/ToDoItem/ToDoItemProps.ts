@@ -3,7 +3,7 @@ import ToDoItemStatus from "./ToDoItemStatus";
 type ToDoItemProps = {
     id: string
     name: string
-    text: string
+    description: string
     completed: boolean
     toDoItemStatus: ToDoItemStatus
 };

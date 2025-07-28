@@ -10,6 +10,8 @@ import { store } from './store';
 import { useAppDispatch, useAppSelector } from './store/hook';
 import { addTodo } from './store/todoSlice';
 import CreateCardForm from './Components/CreateCardForm/CreateCardForm';
+import Footer from './Components/Footer/Footer';
+import Card from './Components/Card/Card';
 
 
 // const toDoItemLists : ToDoItemLists = {
@@ -96,15 +98,23 @@ import CreateCardForm from './Components/CreateCardForm/CreateCardForm';
 // }
 
 const ToDoApp = () => {
-  const dispatch = useAppDispatch();
   const todoItems = useAppSelector(state => state.todos);
+  const config = useAppSelector(state => state.config);
 
-  const [isCreateCardFormShown, setCreateCardFormShown] = useState(false);
-
-  const createFormShowHandler = () => setCreateCardFormShown(!isCreateCardFormShown);
+  const cardDefenition = (
+    <>
+      <Card
+        id="1"
+        name="Card Title"
+        description="This is a description of the card."
+        toDoItemStatus={1} // Assuming 1 corresponds to Created status
+        completed={false}
+      />
+    </>
+  );
 
   const showToDOList = () => {
-    if (isCreateCardFormShown)
+    if (!config.isTaskCreating)
     {
       return (
       <div className='min-h-screen bg-black flex items-center justify-center '>
@@ -128,11 +138,11 @@ const ToDoApp = () => {
   return(
     <>
     <div className='min-h-screen bg-slate-900 dark:bg-gray-900 text-gray-900'>
-      <Header createClickHandler={createFormShowHandler} />
+      <Header />
       {showToDOList()}
+      <Footer />
     </div>
     </>
-    
   ); 
 };
 
