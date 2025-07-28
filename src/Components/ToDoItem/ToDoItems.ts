@@ -4,7 +4,7 @@ type ToDoItemLists = {
     created: ToDoItemProps[]
     inWork: ToDoItemProps[]
     inReview: ToDoItemProps[]
-    tesing: ToDoItemProps[]
+    testing: ToDoItemProps[]
     done: ToDoItemProps[]
 };
 

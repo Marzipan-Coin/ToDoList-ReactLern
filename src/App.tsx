@@ -5,108 +5,100 @@ import ToDoItemLists from './Components/ToDoItem/ToDoItems';
 import ToDoList from './Components/ToDoList/ToDoList';
 import Header from './Components/Header/Header';
 import { useState } from 'react';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import { useAppDispatch, useAppSelector } from './store/hook';
+import { addTodo } from './store/todoSlice';
+import CreateCardForm from './Components/CreateCardForm/CreateCardForm';
 
-const toDoItemProps : ToDoItemProps[] = [{
-  id: "TestId",
-  name: "TestName",
-  text: "TestDescription",
-  completed: false,
-  toDoItemStatus: ToDoItemStatus.Created
-},
-{
-  id: "TestId1",
-  name: "TestName1",
-  text: "TestDescription1",
-  completed: false,
-  toDoItemStatus: ToDoItemStatus.InWork
-}]
 
-const toDoItemLists : ToDoItemLists = {
-  created: [
-    {
-      id: "TestId",
-      name: "TestName",
-      text: "TestDescription",
-      completed: false,
-      toDoItemStatus: ToDoItemStatus.Created
-    },
-    {
-      id: "TestId_1",
-      name: "TestName",
-      text: "TestDescription",
-      completed: false,
-      toDoItemStatus: ToDoItemStatus.Created
-    }
-  ],
-  done: [
-    {
-      id: "TestId",
-      name: "TestName",
-      text: "TestDescription",
-      completed: false,
-      toDoItemStatus: ToDoItemStatus.Done
-    },
-    {
-      id: "TestId_1",
-      name: "TestName",
-      text: "TestDescription",
-      completed: false,
-      toDoItemStatus: ToDoItemStatus.Done
-    }
-  ],
-  inReview: [
-    {
-      id: "TestId",
-      name: "TestName",
-      text: "TestDescription",
-      completed: false,
-      toDoItemStatus: ToDoItemStatus.InReview
-    },
-    {
-      id: "TestId_1",
-      name: "TestName",
-      text: "TestDescription",
-      completed: false,
-      toDoItemStatus: ToDoItemStatus.InReview
-    }
-  ],
-  inWork: [
-    {
-      id: "TestId",
-      name: "TestName",
-      text: "TestDescription",
-      completed: false,
-      toDoItemStatus: ToDoItemStatus.InWork
-    },
-    {
-      id: "TestId_1",
-      name: "TestName",
-      text: "TestDescription",
-      completed: false,
-      toDoItemStatus: ToDoItemStatus.InWork
-    }
-  ],
-  tesing: [
-    {
-      id: "TestId",
-      name: "TestName",
-      text: "TestDescription",
-      completed: false,
-      toDoItemStatus: ToDoItemStatus.Testing
-    },
-    {
-      id: "TestId_1",
-      name: "TestName",
-      text: "TestDescription",
-      completed: false,
-      toDoItemStatus: ToDoItemStatus.Testing
-    }
-  ]
+// const toDoItemLists : ToDoItemLists = {
+//   created: [
+//     {
+//       id: "TestId",
+//       name: "TestName",
+//       text: "TestDescription",
+//       completed: false,
+//       toDoItemStatus: ToDoItemStatus.Created
+//     },
+//     {
+//       id: "TestId_1",
+//       name: "TestName",
+//       text: "TestDescription",
+//       completed: false,
+//       toDoItemStatus: ToDoItemStatus.Created
+//     }
+//   ],
+//   done: [
+//     {
+//       id: "TestId",
+//       name: "TestName",
+//       text: "TestDescription",
+//       completed: false,
+//       toDoItemStatus: ToDoItemStatus.Done
+//     },
+//     {
+//       id: "TestId_1",
+//       name: "TestName",
+//       text: "TestDescription",
+//       completed: false,
+//       toDoItemStatus: ToDoItemStatus.Done
+//     }
+//   ],
+//   inReview: [
+//     {
+//       id: "TestId",
+//       name: "TestName",
+//       text: "TestDescription",
+//       completed: false,
+//       toDoItemStatus: ToDoItemStatus.InReview
+//     },
+//     {
+//       id: "TestId_1",
+//       name: "TestName",
+//       text: "TestDescription",
+//       completed: false,
+//       toDoItemStatus: ToDoItemStatus.InReview
+//     }
+//   ],
+//   inWork: [
+//     {
+//       id: "TestId",
+//       name: "TestName",
+//       text: "TestDescription",
+//       completed: false,
+//       toDoItemStatus: ToDoItemStatus.InWork
+//     },
+//     {
+//       id: "TestId_1",
+//       name: "TestName",
+//       text: "TestDescription",
+//       completed: false,
+//       toDoItemStatus: ToDoItemStatus.InWork
+//     }
+//   ],
+//   testing: [
+//     {
+//       id: "TestId",
+//       name: "TestName",
+//       text: "TestDescription",
+//       completed: false,
+//       toDoItemStatus: ToDoItemStatus.Testing
+//     },
+//     {
+//       id: "TestId_1",
+//       name: "TestName",
+//       text: "TestDescription",
+//       completed: false,
+//       toDoItemStatus: ToDoItemStatus.Testing
+//     }
+//   ]
+// }
 
-}
+const ToDoApp = () => {
+  const dispatch = useAppDispatch();
+  const todoItems = useAppSelector(state => state.todos);
 
-export const App = () => {
-  const [todoItemListState, setTodoItemListState] = useState(toDoItemLists);
   const [isCreateCardFormShown, setCreateCardFormShown] = useState(false);
 
   const createFormShowHandler = () => setCreateCardFormShown(!isCreateCardFormShown);
@@ -116,8 +108,19 @@ export const App = () => {
     {
       return (
       <div className='min-h-screen bg-black flex items-center justify-center '>
-        <ToDoList {...toDoItemLists} />
+        <ToDoList
+          created={todoItems.created.map(item => item.ToDoItem)}
+          inWork={todoItems.inWork.map(item => item.ToDoItem)}
+          inReview={todoItems.inReview.map(item => item.ToDoItem)}
+          testing={todoItems.testing.map(item => item.ToDoItem)}
+          done={todoItems.done.map(item => item.ToDoItem)}
+        />
       </div>
+      );
+    }
+    else {
+      return (
+        <CreateCardForm />
       );
     }
   }
@@ -132,3 +135,11 @@ export const App = () => {
     
   ); 
 };
+
+export const App = () => (
+  <Provider store={store}>
+    <ToDoApp />
+  </Provider>
+);
+
+

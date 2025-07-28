@@ -2,6 +2,8 @@ import useCardSettings from "./useCardSettings";
 import useHoveredColor from "./useHoveredColors";
 import ToDoItemProps from "./ToDoItemProps";
 import ToDoItemLists from "./ToDoItems";
+import { useAppDispatch } from "../../store/hook";
+import { removeToDo } from "../../store/todoSlice";
 
 type ToDoItemParamProps = {
   toDoItemProps: ToDoItemProps;
@@ -9,9 +11,10 @@ type ToDoItemParamProps = {
     onDelete: (item: ToDoItemProps) => void;
 }
 
-const ToDoItem: React.FC<ToDoItemParamProps> = ({ toDoItemProps, setToDoListState, onDelete }) => {
-    var bgColor = useCardSettings(toDoItemProps);
-    var hoveredColor = useHoveredColor(toDoItemProps);
+const ToDoItem = (toDoItemProps : ToDoItemProps) => {
+    const bgColor = useCardSettings(toDoItemProps);
+    const hoveredColor = useHoveredColor(toDoItemProps);
+    const dispatch = useAppDispatch();
 
 
     return (
@@ -25,6 +28,10 @@ const ToDoItem: React.FC<ToDoItemParamProps> = ({ toDoItemProps, setToDoListStat
                 <p className="mt-2 text-slate-600 dark:text-slate-400">{toDoItemProps.toDoItemStatus}</p>
                 <p className="mt-2 text-slate-600 dark:text-slate-400">IsCompleted:</p>
                 <p className="mt-2 text-slate-600 dark:text-slate-400">{toDoItemProps.completed ? "Yes" : "No"}</p>
+                <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md transition-colors duration-200 shadow-sm"
+                 onClick={() => dispatch(removeToDo({ id: toDoItemProps.id }))}>
+                    Delete
+                </button>
             </div>
         </>
     );

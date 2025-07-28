@@ -13,7 +13,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    toDoItemLists: {
       created: [
         {
           id: "TestId",
@@ -62,7 +61,7 @@ export const Default: Story = {
           toDoItemStatus: ToDoItemStatus.InReview
         }
       ],
-      tesing: [
+      testing: [
         {
           id: "TestId",
           name: "TestName",
@@ -94,7 +93,5 @@ export const Default: Story = {
           toDoItemStatus: ToDoItemStatus.Done
         }
       ]
-    },
-    setToDoListState: (x) => {}
   }
 };

@@ -1,5 +1,13 @@
+import { useAppDispatch } from "../../store/hook";
+import { addTodo } from "../../store/todoSlice";
+import ToDoItemStatus from "../ToDoItem/ToDoItemStatus";
+
 const CreateCardForm = () => {
-    
+    const dispatch = useAppDispatch();
+    let title = "";
+    let id = "";
+    let description = "";
+
     return (
         <>
             <div className="block max-w-96 w-96 items-center space-x-4 border-2 border-black rounded p-4 bg-gray-100">
@@ -10,23 +18,29 @@ const CreateCardForm = () => {
                         type="text"
                         className="w-40 inline-block p-2 border bg-gray-100 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Enter card title"  
+                        onChange={(e) => title = e.target.value}
                     ></input>
                     <label className="w-40 inline-block text-sm font-medium text-gray-700">Card Id</label>
                     <input
                         type="text"
                         className="w-40 inline-block p-2 border bg-gray-100 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Enter card id"
+                        onChange={(e) => id = e.target.value}
                     ></input>
                     <label className="w-40 inline-block text-sm font-medium text-gray-700">Card Description</label>
                     <input
                         type="text"
                         className="w-40 inline-block p-2 border bg-gray-100 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Enter description"
+                        onChange={(e) => description = e.target.value}
                     ></input>
                     <input
                         type="submit"
                         className="w-40 inline-block p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 cursor-pointer"
                         value="Create Card"
+                        onClick={() => {
+                            dispatch(addTodo({ ToDoItem: { id: id, name: title, text: description, toDoItemStatus: ToDoItemStatus.Created, completed: false } }));
+                        }}
                     />
                     <input
                         type="button"

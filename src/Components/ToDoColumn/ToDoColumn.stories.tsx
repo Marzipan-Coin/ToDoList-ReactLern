@@ -13,19 +13,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Empty: Story = {
   args: {
-    toDoItemParameter: {
       name: "Some Parameter",
       value: [
       ]
     },
-    onDelete: (x) => {},
-    setToDoListState: (x) => {}
-  }
 };
 
 export const OneElement: Story = {
   args: {
-    toDoItemParameter: {
       name: "Some Parameter",
       value: [
         {
@@ -36,15 +31,11 @@ export const OneElement: Story = {
           toDoItemStatus: ToDoItemStatus.Created
         }
       ]
-    },
-    onDelete: (x) => {},
-    setToDoListState: (x) => {}
   }
 };
 
 export const FiveElement: Story = {
   args: {
-    toDoItemParameter: {
       name: "Some Parameter",
       value: [
         {
@@ -84,7 +75,4 @@ export const FiveElement: Story = {
         },
       ]
     },
-    onDelete: (x) => {},
-    setToDoListState: (x) => {}
-  }
 };
