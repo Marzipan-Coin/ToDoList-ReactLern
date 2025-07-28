@@ -1,9 +1,8 @@
-import ToDoItemProps from "../Types/ToDoItemProps";
-import ToDoItemLists from "../Types/ToDoItems";
-import ToDoItemStatus from "../Types/ToDoItemStatus";
-import NamedParameter from "../Utils/NamedParameter";
-import ToDoColumn from "./ToDoColumn";
-import ToDoItem from "./ToDoItem";
+import ToDoItemProps from "../ToDoItem/ToDoItemProps";
+import ToDoItemLists from "../ToDoItem/ToDoItems";
+import ToDoItemStatus from "../ToDoItem/ToDoItemStatus";
+import NamedParameter from "../../Utils/NamedParameter";
+import ToDoColumn from "../ToDoColumn/ToDoColumn";
 import React from "react";
 
 type ToDoGridProps = {
@@ -23,7 +22,7 @@ const ToDoGrid: React.FC<ToDoGridProps> = ({ toDoItemLists, setToDoListState }) 
 
     return (
         <>
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+        <div className="min-w-[1000px] table-auto border grid grid-cols-5 gap-6">
             
             <ToDoColumn setToDoListState={setToDoListState} toDoItemParameter={GetParameter(toDoItemLists.created, "Created")} onDelete={handleDelete}  />
             <ToDoColumn setToDoListState={setToDoListState} toDoItemParameter={GetParameter(toDoItemLists.inWork, "In Work")} onDelete={handleDelete}  />

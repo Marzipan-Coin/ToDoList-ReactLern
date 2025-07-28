@@ -1,10 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import ToDoColumn from './ToDoColumn';
-import NamedParameter from '../Utils/NamedParameter';
-import ToDoItemProps from '../Types/ToDoItemProps';
-import ToDoItemLists from '../Types/ToDoItems';
-import ToDoItemStatus from '../Types/ToDoItemStatus';
+import ToDoItemStatus from '../ToDoItem/ToDoItemStatus';
 
 const meta = {
   component: ToDoColumn,
@@ -35,8 +32,6 @@ export const OneElement: Story = {
           completed: false,
           id: "1",
           name: "Some Name",
-          onDelete: (x) => {},
-          onToggle: (x) => {},
           text: "Some Text",
           toDoItemStatus: ToDoItemStatus.Created
         }
@@ -56,8 +51,6 @@ export const FiveElement: Story = {
           completed: false,
           id: "1",
           name: "Some Name",
-          onDelete: (x) => {},
-          onToggle: (x) => {},
           text: "Some Text",
           toDoItemStatus: ToDoItemStatus.Created
         },
@@ -65,8 +58,6 @@ export const FiveElement: Story = {
           completed: false,
           id: "2",
           name: "Some Name",
-          onDelete: (x) => {},
-          onToggle: (x) => {},
           text: "Some Text",
           toDoItemStatus: ToDoItemStatus.Created
         },
@@ -74,8 +65,6 @@ export const FiveElement: Story = {
           completed: false,
           id: "3",
           name: "Some Name",
-          onDelete: (x) => {},
-          onToggle: (x) => {},
           text: "Some Text",
           toDoItemStatus: ToDoItemStatus.Created
         },
@@ -83,8 +72,6 @@ export const FiveElement: Story = {
           completed: false,
           id: "4",
           name: "Some Name",
-          onDelete: (x) => {},
-          onToggle: (x) => {},
           text: "Some Text",
           toDoItemStatus: ToDoItemStatus.Created
         },
@@ -92,8 +79,6 @@ export const FiveElement: Story = {
           completed: false,
           id: "5",
           name: "Some Name",
-          onDelete: (x) => {},
-          onToggle: (x) => {},
           text: "Some Text",
           toDoItemStatus: ToDoItemStatus.Created
         },

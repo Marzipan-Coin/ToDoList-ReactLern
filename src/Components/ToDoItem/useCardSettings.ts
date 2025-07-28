@@ -1,7 +1,6 @@
-import ToDoItemProps from "../Types/ToDoItemProps";
-import Color from "../Types/Color";
-import ToDoItemStatus from "../Types/ToDoItemStatus";
-import CardSettings from "../Types/CardSettings";
+import ToDoItemProps from "./ToDoItemProps";
+import ToDoItemStatus from "./ToDoItemStatus";
+import CardSettings from "../../Types/CardSettings";
 
 
 const useCardSettings = (toDoItemProps: ToDoItemProps) : CardSettings => {

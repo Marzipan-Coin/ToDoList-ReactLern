@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import ToDoList from './ToDoList';
-import ToDoItemStatus from '../Types/ToDoItemStatus';
+import ToDoList from '../ToDoList/ToDoList';
+import ToDoItemStatus from '../ToDoItem/ToDoItemStatus';
 
 const meta = {
   component: ToDoList,
@@ -19,8 +19,6 @@ export const Default: Story = {
         name: "TestName",
         text: "TestDescription",
         completed: false,
-        onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-        onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
         toDoItemStatus: ToDoItemStatus.Created
       },
       {
@@ -28,8 +26,6 @@ export const Default: Story = {
         name: "TestName",
         text: "TestDescription",
         completed: false,
-        onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-        onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
         toDoItemStatus: ToDoItemStatus.Created
       }
     ],
@@ -39,8 +35,6 @@ export const Default: Story = {
         name: "TestName",
         text: "TestDescription",
         completed: false,
-        onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-        onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
         toDoItemStatus: ToDoItemStatus.InWork
       },
       {
@@ -48,8 +42,6 @@ export const Default: Story = {
         name: "TestName",
         text: "TestDescription",
         completed: false,
-        onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-        onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
         toDoItemStatus: ToDoItemStatus.InWork
       }
     ],
@@ -59,8 +51,6 @@ export const Default: Story = {
         name: "TestName",
         text: "TestDescription",
         completed: false,
-        onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-        onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
         toDoItemStatus: ToDoItemStatus.InReview
       },
       {
@@ -68,8 +58,6 @@ export const Default: Story = {
         name: "TestName",
         text: "TestDescription",
         completed: false,
-        onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-        onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
         toDoItemStatus: ToDoItemStatus.InReview
       }
     ],
@@ -79,8 +67,6 @@ export const Default: Story = {
         name: "TestName",
         text: "TestDescription",
         completed: false,
-        onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-        onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
         toDoItemStatus: ToDoItemStatus.Testing
       },
       {
@@ -88,8 +74,6 @@ export const Default: Story = {
         name: "TestName",
         text: "TestDescription",
         completed: false,
-        onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-        onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
         toDoItemStatus: ToDoItemStatus.Testing
       }
     ],
@@ -99,8 +83,6 @@ export const Default: Story = {
         name: "TestName",
         text: "TestDescription",
         completed: false,
-        onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-        onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
         toDoItemStatus: ToDoItemStatus.Done
       },
       {
@@ -108,8 +90,6 @@ export const Default: Story = {
         name: "TestName",
         text: "TestDescription",
         completed: false,
-        onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-        onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
         toDoItemStatus: ToDoItemStatus.Done
       }
     ],

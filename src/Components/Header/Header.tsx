@@ -1,4 +1,4 @@
-import ToDoItemProps from "../Types/ToDoItemProps";
+import ToDoItemProps from "../ToDoItem/ToDoItemProps";
 
 type HeaderParamProps = {
     createClickHandler: () => void;

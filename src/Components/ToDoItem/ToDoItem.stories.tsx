@@ -1,9 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import ToDoItem from './ToDoItem';
-import ToDoItemProps from '../Types/ToDoItemProps';
-import ToDoItemLists from '../Types/ToDoItems';
-import ToDoItemStatus from '../Types/ToDoItemStatus';
+import ToDoItemStatus from './ToDoItemStatus';
 
 const meta = {
   component: ToDoItem,
@@ -19,8 +17,6 @@ export const Created: Story = {
       completed: false,
       id: "1",
       name: "Some Task",
-      onDelete: (x) => { alert(x) },
-      onToggle: (x) => { alert(x) },
       text: "Some Description",
       toDoItemStatus: ToDoItemStatus.Created
     },
@@ -35,8 +31,6 @@ export const InWork: Story = {
       completed: false,
       id: "1",
       name: "Some Task",
-      onDelete: (x) => { alert(x) },
-      onToggle: (x) => { alert(x) },
       text: "Some Description",
       toDoItemStatus: ToDoItemStatus.InWork
     },
@@ -51,8 +45,6 @@ export const InReview: Story = {
       completed: false,
       id: "1",
       name: "Some Task",
-      onDelete: (x) => { alert(x) },
-      onToggle: (x) => { alert(x) },
       text: "Some Description",
       toDoItemStatus: ToDoItemStatus.InReview
     },
@@ -67,8 +59,6 @@ export const Testing: Story = {
       completed: false,
       id: "1",
       name: "Some Task",
-      onDelete: (x) => { alert(x) },
-      onToggle: (x) => { alert(x) },
       text: "Some Description",
       toDoItemStatus: ToDoItemStatus.Testing
     },
@@ -83,8 +73,6 @@ export const Done: Story = {
       completed: false,
       id: "1",
       name: "Some Task",
-      onDelete: (x) => { alert(x) },
-      onToggle: (x) => { alert(x) },
       text: "Some Description",
       toDoItemStatus: ToDoItemStatus.Done
     },

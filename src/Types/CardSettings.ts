@@ -1,5 +1,5 @@
 import CardStatus from "./CardStatus";
-import Color from "./Color";
+import Color from "../Components/ToDoItem/Color";
 
 type CardSettings = {
     color: Color

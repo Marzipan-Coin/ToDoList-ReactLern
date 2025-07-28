@@ -1,11 +1,9 @@
 import './index.css';
-import ToDoItem from './Components/ToDoItem';
-import ToDoItemProps from './Types/ToDoItemProps';
-import ToDoItemStatus from './Types/ToDoItemStatus';
-import ToDoGrid from './Components/ToDoGrid';
-import ToDoItemLists from './Types/ToDoItems';
-import ToDoList from './Components/ToDoList';
-import Header from './Components/Header';
+import ToDoItemProps from './Components/ToDoItem/ToDoItemProps';
+import ToDoItemStatus from './Components/ToDoItem/ToDoItemStatus';
+import ToDoItemLists from './Components/ToDoItem/ToDoItems';
+import ToDoList from './Components/ToDoList/ToDoList';
+import Header from './Components/Header/Header';
 import { useState } from 'react';
 
 const toDoItemProps : ToDoItemProps[] = [{
@@ -13,8 +11,6 @@ const toDoItemProps : ToDoItemProps[] = [{
   name: "TestName",
   text: "TestDescription",
   completed: false,
-  onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-  onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
   toDoItemStatus: ToDoItemStatus.Created
 },
 {
@@ -22,8 +18,6 @@ const toDoItemProps : ToDoItemProps[] = [{
   name: "TestName1",
   text: "TestDescription1",
   completed: false,
-  onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-  onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
   toDoItemStatus: ToDoItemStatus.InWork
 }]
 
@@ -34,8 +28,6 @@ const toDoItemLists : ToDoItemLists = {
       name: "TestName",
       text: "TestDescription",
       completed: false,
-      onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-      onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
       toDoItemStatus: ToDoItemStatus.Created
     },
     {
@@ -43,8 +35,6 @@ const toDoItemLists : ToDoItemLists = {
       name: "TestName",
       text: "TestDescription",
       completed: false,
-      onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-      onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
       toDoItemStatus: ToDoItemStatus.Created
     }
   ],
@@ -54,8 +44,6 @@ const toDoItemLists : ToDoItemLists = {
       name: "TestName",
       text: "TestDescription",
       completed: false,
-      onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-      onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
       toDoItemStatus: ToDoItemStatus.Done
     },
     {
@@ -63,8 +51,6 @@ const toDoItemLists : ToDoItemLists = {
       name: "TestName",
       text: "TestDescription",
       completed: false,
-      onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-      onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
       toDoItemStatus: ToDoItemStatus.Done
     }
   ],
@@ -74,8 +60,6 @@ const toDoItemLists : ToDoItemLists = {
       name: "TestName",
       text: "TestDescription",
       completed: false,
-      onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-      onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
       toDoItemStatus: ToDoItemStatus.InReview
     },
     {
@@ -83,8 +67,6 @@ const toDoItemLists : ToDoItemLists = {
       name: "TestName",
       text: "TestDescription",
       completed: false,
-      onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-      onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
       toDoItemStatus: ToDoItemStatus.InReview
     }
   ],
@@ -94,8 +76,6 @@ const toDoItemLists : ToDoItemLists = {
       name: "TestName",
       text: "TestDescription",
       completed: false,
-      onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-      onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
       toDoItemStatus: ToDoItemStatus.InWork
     },
     {
@@ -103,8 +83,6 @@ const toDoItemLists : ToDoItemLists = {
       name: "TestName",
       text: "TestDescription",
       completed: false,
-      onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-      onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
       toDoItemStatus: ToDoItemStatus.InWork
     }
   ],
@@ -114,8 +92,6 @@ const toDoItemLists : ToDoItemLists = {
       name: "TestName",
       text: "TestDescription",
       completed: false,
-      onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-      onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
       toDoItemStatus: ToDoItemStatus.Testing
     },
     {
@@ -123,8 +99,6 @@ const toDoItemLists : ToDoItemLists = {
       name: "TestName",
       text: "TestDescription",
       completed: false,
-      onDelete: (id: string) => alert(`The task with id: ${id} will be deleted`),
-      onToggle: (id: string) => alert(`The task with id ${id} has been toggled`),
       toDoItemStatus: ToDoItemStatus.Testing
     }
   ]

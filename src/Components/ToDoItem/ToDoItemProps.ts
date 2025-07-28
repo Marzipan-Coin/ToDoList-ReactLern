@@ -6,8 +6,6 @@ type ToDoItemProps = {
     text: string
     completed: boolean
     toDoItemStatus: ToDoItemStatus
-    onToggle: (id: string) => void
-    onDelete: (id: string) => void
 };
 
 export default ToDoItemProps;

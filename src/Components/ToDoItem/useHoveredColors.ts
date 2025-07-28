@@ -1,6 +1,6 @@
-import ToDoItemProps from "../Types/ToDoItemProps";
-import ToDoItemStatus from "../Types/ToDoItemStatus";
-import HoveredColor from "../Types/HoveredColor";
+import ToDoItemProps from "./ToDoItemProps";
+import ToDoItemStatus from "./ToDoItemStatus";
+import HoveredColor from "./HoveredColor";
 
 
 const useHoveredColor = (toDoItemProps: ToDoItemProps) : HoveredColor => {
