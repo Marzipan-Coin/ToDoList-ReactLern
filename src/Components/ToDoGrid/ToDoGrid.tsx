@@ -14,7 +14,7 @@ const ToDoGrid = (toDoItemLists : ToDoItemLists) => {
 
     return (
         <>
-        <div className="min-w-[1000px] table-auto border grid grid-cols-5 gap-6">
+        <div className="min-w-[1000px] table-auto border grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 ">
             <ToDoColumn  {...GetParameter(toDoItemLists.created, "Created")}  />
             <ToDoColumn  {...GetParameter(toDoItemLists.inWork, "In Work")}  />
             <ToDoColumn  {...GetParameter(toDoItemLists.inReview, "In review")}  />

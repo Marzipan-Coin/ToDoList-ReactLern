@@ -5,6 +5,8 @@ import ToDoItemLists from "./ToDoItems";
 import { useAppDispatch } from "../../store/hook";
 import { removeToDo } from "../../store/todoSlice";
 import LimitedText from "../LimitedText/LimitedText";
+import { toggleCardOpened } from "../../store/configSlice";
+import { setTodo } from "../../store/todoCardSlice";
 
 type ToDoItemParamProps = {
   toDoItemProps: ToDoItemProps;
@@ -20,7 +22,18 @@ const ToDoItem = (toDoItemProps : ToDoItemProps) => {
 
     return (
         <>
-            <div className={`inline-grid grid-cols-2 p-3 ml-4 gap-1 max-w-96 rounded shadow-lg overflow-hidden ${bgColor.color} dark:bg-slate-800 ${hoveredColor}`}>
+            <div 
+            className={`inline-grid grid-cols-2 p-3 ml-4 gap-1 max-w-96 rounded shadow-lg overflow-hidden ${bgColor.color} dark:bg-slate-800 ${hoveredColor} mb-2`}
+            onClick = {() => {
+                dispatch(toggleCardOpened());
+                dispatch(setTodo({
+                    id: toDoItemProps.id,
+                    name: toDoItemProps.name,
+                    description: toDoItemProps.description,
+                    status: toDoItemProps.toDoItemStatus, // Map to required 'status'
+                    completed: toDoItemProps.completed
+                }));
+            }}>
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white">№ <LimitedText text={toDoItemProps.id} limit={20} /></h3>
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white"><LimitedText text={toDoItemProps.name} limit={20} /></h3>
                 <p className="mt-2 text-slate-600 dark:text-slate-400">Description:</p>

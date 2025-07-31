@@ -4,12 +4,14 @@ interface ConfigState {
   isTaskCreating: boolean;
   isProfileOpened: boolean;
   isInfoOpened: boolean;
+  isCardOpened: boolean; // New state to track if a card is opened
 }
 
 const initialState: ConfigState = {
     isTaskCreating: false,
     isProfileOpened: false,
-    isInfoOpened: false
+    isInfoOpened: false,
+    isCardOpened: false
 };
 
 export const configSlice = createSlice({
@@ -24,9 +26,12 @@ export const configSlice = createSlice({
         },
         toggleInfoOpened: (state) => {
             state.isInfoOpened = !state.isInfoOpened;
+        },
+        toggleCardOpened: (state) => {
+            state.isCardOpened = !state.isCardOpened;
         }
     }
 });
 
 export default configSlice.reducer;
-export const { toggleTaskCreating, toggleProfileOpened, toggleInfoOpened } = configSlice.actions;
+export const { toggleTaskCreating, toggleProfileOpened, toggleInfoOpened, toggleCardOpened } = configSlice.actions;

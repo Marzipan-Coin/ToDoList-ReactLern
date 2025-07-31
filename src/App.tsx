@@ -100,15 +100,16 @@ import Card from './Components/Card/Card';
 const ToDoApp = () => {
   const todoItems = useAppSelector(state => state.todos);
   const config = useAppSelector(state => state.config);
+  const card = useAppSelector(state => state.card);
 
   const cardDefenition = (
     <>
       <Card
-        id="1"
-        name="Card Title"
-        description="This is a description of the card."
-        toDoItemStatus={1} // Assuming 1 corresponds to Created status
-        completed={false}
+        id={card.id}
+        name={card.name}
+        description={card.description}
+        toDoItemStatus={card.status}
+        completed={card.completed}
       />
     </>
   );
@@ -135,11 +136,22 @@ const ToDoApp = () => {
     }
   }
 
+  const showCard = () => {
+    if (config.isCardOpened) {
+      return (
+        <div className='min-h-screen bg-black flex items-center justify-center'>
+          {cardDefenition}
+        </div>
+      );
+    }
+  }
+
   return(
     <>
     <div className='min-h-screen bg-slate-900 dark:bg-gray-900 text-gray-900'>
       <Header />
       {showToDOList()}
+      {showCard()}
       <Footer />
     </div>
     </>

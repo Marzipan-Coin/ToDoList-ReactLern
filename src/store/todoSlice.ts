@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import ToDoItemProps from "../Components/ToDoItem/ToDoItemProps";
-import ToDoItemStatus from "../Components/ToDoItem/ToDoItemStatus";
 
 interface ToDoState {
   created: Array<{ToDoItem: ToDoItemProps}>
@@ -17,23 +16,6 @@ const initialState: ToDoState = {
   testing: [],
   done: []
 };
-
-const GetToDos = (status: number, state: ToDoState) => {
-    switch (status) {
-        case 0:
-        return state.created;
-        case 1:
-        return state.inWork;
-        case 2:
-        return state.inReview;
-        case 3:
-        return state.testing;
-        case 4:
-        return state.done;
-        default:
-        return [];
-    }
-}
 
 export const todoSlice = createSlice({
     name: 'todo',
