@@ -1,9 +1,20 @@
+import { toggleCardOpened } from "../../store/configSlice";
 import { useAppDispatch } from "../../store/hook";
-import { promoteToDo, removeToDo } from "../../store/todoSlice";
+import { removeToDo, addTodo } from "../../store/todoSlice";
 import ToDoItemProps from "../ToDoItem/ToDoItemProps";
 
 const Card = (props: ToDoItemProps) => {
     const dispatch = useAppDispatch();
+
+    const promoteToDo = () => {
+        let updatedToDo = {
+            ...props,
+            toDoItemStatus: props.toDoItemStatus + 1 // Increment the status
+        };
+        dispatch(removeToDo({ id: props.id })); // Remove the current item
+        dispatch(addTodo({ ToDoItem: updatedToDo })); // Add the updated item
+        dispatch(toggleCardOpened()); // Close the card after promoting
+    }
 
     return (
         <div className="absolute top-20 left-10 z-0  block w-96 shadow-md rounded-lg p-4 bg-gray-800">
@@ -17,7 +28,7 @@ const Card = (props: ToDoItemProps) => {
             </button>
             {/* Add the button for promote the toDoItemStatus */}
             <button className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-200 shadow-sm"
-                onClick={() => dispatch(promoteToDo({ todo: props, oldStatus: props.toDoItemStatus }))}>
+                onClick={() => promoteToDo()}>
                 Promote
             </button>
         </div>

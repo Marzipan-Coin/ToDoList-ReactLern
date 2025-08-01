@@ -45,14 +45,9 @@ export const todoSlice = createSlice({
                 state.inReview = state.inReview.filter(todo => todo.ToDoItem.id !== action.payload.id);
                 state.testing = state.testing.filter(todo => todo.ToDoItem.id !== action.payload.id);
                 state.done = state.done.filter(todo => todo.ToDoItem.id !== action.payload.id);
-            },
-            promoteToDo: (state, action: PayloadAction<{todo: ToDoItemProps, oldStatus: number}>) => {
-                removeToDo({ id: action.payload.todo.id });
-                action.payload.todo.toDoItemStatus = action.payload.oldStatus + 1;
-                addTodo({ToDoItem: action.payload.todo});
             }
         }
     });
 
 export default todoSlice.reducer;
-export const { addTodo, removeToDo, promoteToDo } = todoSlice.actions;
+export const { addTodo, removeToDo } = todoSlice.actions;
