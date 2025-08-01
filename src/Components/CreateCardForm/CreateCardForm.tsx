@@ -12,7 +12,7 @@ const CreateCardForm = () => {
     const submitHandler = () => {
         dispatch(addTodo({ ToDoItem: { id: id, name: title, description: description, toDoItemStatus: ToDoItemStatus.Created, completed: false } }));
         dispatch(toggleTaskCreating()); // Close the form after submission
-    }
+    };
 
     return (
         <>
