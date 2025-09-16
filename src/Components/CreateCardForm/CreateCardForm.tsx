@@ -1,18 +1,9 @@
-import { toggleTaskCreating } from "../../store/configSlice";
-import { useAppDispatch } from "../../store/hook";
-import { addTodo } from "../../store/todoSlice";
 import ToDoItemStatus from "../ToDoItem/ToDoItemStatus";
 
 const CreateCardForm = () => {
-    const dispatch = useAppDispatch();
     let title = "";
     let id = "";
     let description = "";
-
-    const submitHandler = () => {
-        dispatch(addTodo({ ToDoItem: { id: id, name: title, description: description, toDoItemStatus: ToDoItemStatus.Created, completed: false } }));
-        dispatch(toggleTaskCreating()); // Close the form after submission
-    };
 
     return (
         <>
@@ -45,7 +36,7 @@ const CreateCardForm = () => {
                         className="w-40 inline-block p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 cursor-pointer"
                         value="Create Card"
                         onClick={() => {
-                            submitHandler();
+                            
                         }}
                     />
                     <input
@@ -53,7 +44,7 @@ const CreateCardForm = () => {
                         className="w-40 inline-block p-2 bg-red-900 text-white rounded-md hover:bg-red-600 cursor-pointer"
                         value="Cancel"
                         onClick={() => {
-                            dispatch(toggleTaskCreating());
+                            
                         }}
                     />
                 </div>
