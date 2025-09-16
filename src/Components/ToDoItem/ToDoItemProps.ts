@@ -6,6 +6,9 @@ type ToDoItemProps = {
     description: string
     completed: boolean
     toDoItemStatus: ToDoItemStatus
+    onPromote?: (id: string) => void
+    onDelete?: (item: ToDoItemProps) => void
 };
+
 
 export default ToDoItemProps;

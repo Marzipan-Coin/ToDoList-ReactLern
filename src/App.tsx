@@ -110,7 +110,9 @@ const ToDoApp = () => {
         description={card.description}
         toDoItemStatus={card.status}
         completed={card.completed}
-      />
+        onDelete={() => {
+          dispatch(removeToDo({ id: card.id }));
+        }}
     </>
   );
 

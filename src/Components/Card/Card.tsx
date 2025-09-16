@@ -34,7 +34,7 @@ const Card = (props: ToDoItemProps) => {
             <p className="text-gray-500 mt-2">Status: {props.toDoItemStatus}</p>
             <p className="text-gray-500">Completed: {props.completed ? "Yes" : "No"}</p>
             <button className="mt-4 mr-40 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md transition-colors duration-200 shadow-sm"
-                onClick={() => deleteToDo()}>
+                onClick={() => props.onDelete?(props.id)}>
                 Delete
             </button>
             {/* Add the button for promote the toDoItemStatus */}
