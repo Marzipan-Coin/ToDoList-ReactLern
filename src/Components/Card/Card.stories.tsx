@@ -17,6 +17,9 @@ export const CreatedCard: Story = {
     id: "1",
     toDoItemStatus: 1, // Assuming 1 corresponds to Created status
     completed: false,
+    onPromote: () => {},
+    onDelete: () => {},
+    onCreate: () => {}
   }
 };
 
@@ -27,6 +30,9 @@ export const CreatedCardWithLongName: Story = {
     id: "2",
     toDoItemStatus: 1, // Assuming 1 corresponds to Created status
     completed: false,
+    onPromote: () => {},
+    onDelete: () => {},
+    onCreate: () => {}
   }
 };
 
@@ -37,6 +43,9 @@ export const CreatedCardWith1000CharactersName: Story = {
     id: "3",
     toDoItemStatus: 1, // Assuming 1 corresponds to Created status
     completed: false,
+    onPromote: () => {},
+    onDelete: () => {},
+    onCreate: () => {}
   }
 };
 
@@ -47,6 +56,9 @@ export const CreatedCardWithLongDescription: Story = {
     id: "4",
     toDoItemStatus: 1, // Assuming 1 corresponds to Created status
     completed: false,
+    onPromote: () => {},
+    onDelete: () => {},
+    onCreate: () => {}
   }
 };
 
@@ -57,6 +69,9 @@ export const CreatedCardWithLongNameAndDescription: Story = {
     id: "5",
     toDoItemStatus: 1, // Assuming 1 corresponds to Created status
     completed: false,
+    onPromote: () => {},
+    onDelete: () => {},
+    onCreate: () => {}
   }
 };
 
@@ -67,6 +82,9 @@ export const CreatedCardWithLongNameAndDescriptionAnd1000Characters: Story = {
     id: "6",
     toDoItemStatus: 1, // Assuming 1 corresponds to Created status
     completed: false,
+    onPromote: () => {},
+    onDelete: () => {},
+    onCreate: () => {}
   }
 };
 
@@ -77,6 +95,9 @@ export const CreatedCardWithLongId : Story = {
     id: "A".repeat(1000), // 1000 characters long id
     toDoItemStatus: 1, // Assuming 1 corresponds to Created status
     completed: false,
+    onPromote: () => {},
+    onDelete: () => {},
+    onCreate: () => {}
   }
 };
 
@@ -87,5 +108,8 @@ export const CreatedCardWithOneLongDescriptionAndOneLongNameWithoutSpaces: Story
     id: "7",
     toDoItemStatus: 1, // Assuming 1 corresponds to Created status
     completed: false,
+    onPromote: () => {},
+    onDelete: () => {},
+    onCreate: () => {}
   }
 };

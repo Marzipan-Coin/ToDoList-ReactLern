@@ -1,14 +1,9 @@
 import useCardSettings from "./useCardSettings";
 import useHoveredColor from "./useHoveredColors";
 import ToDoItemProps from "./ToDoItemProps";
-import ToDoItemLists from "./ToDoItems";
+import ToDoItemLists from "./ToDoItemList";
 import LimitedText from "../LimitedText/LimitedText";
 
-type ToDoItemParamProps = {
-  toDoItemProps: ToDoItemProps;
-  setToDoListState: React.Dispatch<React.SetStateAction<ToDoItemLists>>;
-    onDelete: (item: ToDoItemProps) => void;
-}
 
 const ToDoItem = (toDoItemProps : ToDoItemProps) => {
     const bgColor = useCardSettings(toDoItemProps);

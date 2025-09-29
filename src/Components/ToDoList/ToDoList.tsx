@@ -1,5 +1,4 @@
-import { useState } from "react";
-import ToDoItemLists from "../ToDoItem/ToDoItems";
+import ToDoItemLists from "../ToDoItem/ToDoItemList";
 import ToDoGrid from "../ToDoGrid/ToDoGrid";
 
 const ToDoList = (toDoItemLists : ToDoItemLists) => {

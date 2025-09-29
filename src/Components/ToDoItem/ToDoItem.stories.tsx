@@ -17,7 +17,10 @@ export const Created: Story = {
       id: "1",
       name: "Some Task",
       description: "Some Description",
-      toDoItemStatus: ToDoItemStatus.Created
+      toDoItemStatus: ToDoItemStatus.Created,
+      onPromote: () => {},
+      onDelete: () => {},
+      onCreate: () => {}
     },
   };
 
@@ -27,7 +30,10 @@ export const InWork: Story = {
       id: "1",
       name: "Some Task",
       description: "Some Description",
-      toDoItemStatus: ToDoItemStatus.InWork
+      toDoItemStatus: ToDoItemStatus.InWork,
+      onPromote: () => {},
+      onDelete: () => {},
+      onCreate: () => {}
   },
 };
 
@@ -37,7 +43,10 @@ export const InReview: Story = {
       id: "1",
       name: "Some Task",
       description: "Some Description",
-      toDoItemStatus: ToDoItemStatus.InReview
+      toDoItemStatus: ToDoItemStatus.InReview,
+      onPromote: () => {},
+      onDelete: () => {},
+      onCreate: () => {}
     },
 };
 
@@ -47,7 +56,10 @@ export const Testing: Story = {
       id: "1",
       name: "Some Task",
       description: "Some Description",
-      toDoItemStatus: ToDoItemStatus.Testing
+      toDoItemStatus: ToDoItemStatus.Testing,
+      onPromote: () => {},
+      onDelete: () => {},
+      onCreate: () => {}
     },
 };
 
@@ -57,9 +69,11 @@ export const Done: Story = {
       id: "1",
       name: "Some Task",
       description: "Some Description",
-      toDoItemStatus: ToDoItemStatus.Done
-    
-  },
+      toDoItemStatus: ToDoItemStatus.Done,
+      onPromote: () => {},
+      onDelete: () => {},
+      onCreate: () => {}
+    },
 };
 
 export const CreatedWithLongName: Story = {
@@ -68,7 +82,10 @@ export const CreatedWithLongName: Story = {
       id: "1",
       name: "Some Task with a Very Long Name",
       description: "Some Description",
-      toDoItemStatus: ToDoItemStatus.Created
+      toDoItemStatus: ToDoItemStatus.Created,
+      onPromote: () => {},
+      onDelete: () => {},
+      onCreate: () => {}
   },
 };
 
@@ -78,7 +95,10 @@ export const CreatedWithLongDescription: Story = {
       id: "1",
       name: "Some Task",
       description: "Some Description with a Very Long Text that Should be Truncated",
-      toDoItemStatus: ToDoItemStatus.Created
+      toDoItemStatus: ToDoItemStatus.Created,
+      onPromote: () => {},
+      onDelete: () => {},
+      onCreate: () => {}
   },
 };
 
@@ -88,6 +108,9 @@ export const CreatedWithLongNameAndDescription: Story = {
       id: "1",
       name: "Some Task with a Very Long Name",
       description: "Some Description with a Very Long Text that Should be Truncated",
-      toDoItemStatus: ToDoItemStatus.Created
+      toDoItemStatus: ToDoItemStatus.Created,
+      onPromote: () => {},
+      onDelete: () => {},
+      onCreate: () => {}
   },
 };

@@ -1,9 +1,9 @@
-import ToDoItemStatus from "../ToDoItem/ToDoItemStatus";
+import { useRef } from "react";
 
 const CreateCardForm = () => {
-    let title = "";
-    let id = "";
-    let description = "";
+    const title = useRef("");
+    const id = useRef("");
+    const description = useRef("");
 
     return (
         <>
@@ -15,21 +15,21 @@ const CreateCardForm = () => {
                         type="text"
                         className="w-40 inline-block p-2 border bg-gray-100 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Enter card title"  
-                        onChange={(e) => title = e.target.value}
+                        onChange={(e) => title.current = e.target.value}
                     ></input>
                     <label className="w-40 inline-block text-sm font-medium text-gray-700">Card Id</label>
                     <input
                         type="text"
                         className="w-40 inline-block p-2 border bg-gray-100 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Enter card id"
-                        onChange={(e) => id = e.target.value}
+                        onChange={(e) => id.current = e.target.value}
                     ></input>
                     <label className="w-40 inline-block text-sm font-medium text-gray-700">Card Description</label>
                     <input
                         type="text"
                         className="w-40 inline-block p-2 border bg-gray-100 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Enter description"
-                        onChange={(e) => description = e.target.value}
+                        onChange={(e) => description.current = e.target.value}
                     ></input>
                     <input
                         type="submit"
