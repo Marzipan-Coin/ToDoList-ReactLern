@@ -39,14 +39,6 @@ const CreateCardForm = () => {
                             
                         }}
                     />
-                    <input
-                        type="button"
-                        className="w-40 inline-block p-2 bg-red-900 text-white rounded-md hover:bg-red-600 cursor-pointer"
-                        value="Cancel"
-                        onClick={() => {
-                            
-                        }}
-                    />
                 </div>
 
                 

@@ -12,7 +12,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    createClickHandler: () => { alert("Create button clicked") }
+    setIsCreatingModalOpen: (b) => { alert("Create button clicked") }
     // No specific args needed for the empty state
   }
 };

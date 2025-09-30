@@ -8,6 +8,8 @@ import CreateCardForm from './Components/CreateCardForm/CreateCardForm';
 import Footer from './Components/Footer/Footer';
 import MockToDoListBuilder from './Components/ToDoItem/MockToDoListBuilder';
 import MockToDoItemBuilder from './Components/ToDoItem/MockToDoItemBuilder';
+import Card from './Components/Card/Card';
+import ModalWindow from './Components/ModalWindow/ModalWindow';
 
 const CreateMockToDoItem = () : ToDoItemLists => {
   const list = MockToDoListBuilder
@@ -74,11 +76,20 @@ const CreateMockToDoItem = () : ToDoItemLists => {
 const ToDoApp = () => {
 
   const [todoItems, setToDoItems] = useState<ToDoItemLists>(CreateMockToDoItem());
+  const [isCreatingModalOpen, setIsCreatingModalOpen] = useState<boolean>(false);
+  const [viewingItem, setViewingItem] = useState<typeof Card | null>(null);
 
   return(
     <>
     <div className='min-h-screen bg-slate-900 dark:bg-gray-900 text-gray-900'>
-      <Header />
+      <Header setIsCreatingModalOpen={setIsCreatingModalOpen} />
+      
+      {isCreatingModalOpen && 
+        <ModalWindow onClose={() => setIsCreatingModalOpen(false)} isOpen={isCreatingModalOpen}>
+          <CreateCardForm />
+        </ModalWindow>
+      }
+
       <ToDoList
         created={todoItems.created.map(item => item)}
         inWork={todoItems.inWork.map(item => item)}
