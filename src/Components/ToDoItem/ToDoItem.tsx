@@ -1,7 +1,6 @@
 import useCardSettings from "./useCardSettings";
 import useHoveredColor from "./useHoveredColors";
 import ToDoItemProps from "./ToDoItemProps";
-import ToDoItemLists from "./ToDoItemList";
 import LimitedText from "../LimitedText/LimitedText";
 
 

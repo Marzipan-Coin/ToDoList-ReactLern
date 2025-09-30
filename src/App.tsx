@@ -77,7 +77,6 @@ const ToDoApp = () => {
 
   const [todoItems, setToDoItems] = useState<ToDoItemLists>(CreateMockToDoItem());
   const [isCreatingModalOpen, setIsCreatingModalOpen] = useState<boolean>(false);
-  const [viewingItem, setViewingItem] = useState<typeof Card | null>(null);
 
   return(
     <>
@@ -91,11 +90,11 @@ const ToDoApp = () => {
       }
 
       <ToDoList
-        created={todoItems.created.map(item => item)}
-        inWork={todoItems.inWork.map(item => item)}
-        inReview={todoItems.inReview.map(item => item)}
-        testing={todoItems.testing.map(item => item)}
-        done={todoItems.done.map(item => item)}
+        created={todoItems.created}
+        inWork={todoItems.inWork}
+        inReview={todoItems.inReview}
+        testing={todoItems.testing}
+        done={todoItems.done}
       />
       <Footer />
     </div>
