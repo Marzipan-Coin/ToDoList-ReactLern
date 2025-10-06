@@ -1,78 +1,15 @@
 import './index.css';
-import ToDoItemStatus from './Components/ToDoItem/ToDoItemStatus';
 import ToDoItemLists from './Components/ToDoItem/ToDoItemList';
 import ToDoList from './Components/ToDoList/ToDoList';
 import Header from './Components/Header/Header';
 import { useState } from 'react';
 import CreateCardForm from './Components/CreateCardForm/CreateCardForm';
 import Footer from './Components/Footer/Footer';
-import MockToDoListBuilder from './Components/ToDoItem/MockToDoListBuilder';
-import MockToDoItemBuilder from './Components/ToDoItem/MockToDoItemBuilder';
-import Card from './Components/Card/Card';
-import ModalWindow from './Components/ModalWindow/ModalWindow';
+import MockToDoGenerate from './Components/ToDoItem/MockToDoGenerator';
 
 const CreateMockToDoItem = () : ToDoItemLists => {
-  const list = MockToDoListBuilder
-    .SetToCreated(MockToDoItemBuilder
-      .SetId("1")
-      .SetName("Created Task")
-      .SetDescription("This is a created task")
-      .SetToDoItemStatus(ToDoItemStatus.Created)
-      .SetCompleted(false)
-      .Build())
-    .SetToCreated(MockToDoItemBuilder
-      .SetId("2")
-      .SetName("Second Created Task")
-      .SetDescription("This is a second created task")
-      .SetToDoItemStatus(ToDoItemStatus.Created)
-      .SetCompleted(false)
-      .Build())
-    .SetToInWork(MockToDoItemBuilder
-      .SetId("3")
-      .SetName("In Work Task")
-      .SetDescription("This is an in work task")
-      .SetToDoItemStatus(ToDoItemStatus.InWork)
-      .SetCompleted(false)
-      .Build())
-    .SetToInWork(MockToDoItemBuilder
-      .SetId("4")
-      .SetName("Second In Work Task")
-      .SetDescription("This is a second in work task")
-      .SetToDoItemStatus(ToDoItemStatus.InWork)
-      .SetCompleted(false)
-      .Build())
-    .SetToInWork(MockToDoItemBuilder
-      .SetId("5")
-      .SetName("Third In Work Task")
-      .SetDescription("This is a third in work task")
-      .SetToDoItemStatus(ToDoItemStatus.InWork)
-      .SetCompleted(false)
-      .Build())
-    .SetToInReview(MockToDoItemBuilder
-      .SetId("6")
-      .SetName("In Review Task")
-      .SetDescription("This is an in review task")
-      .SetToDoItemStatus(ToDoItemStatus.InReview)
-      .SetCompleted(false)
-      .Build())
-    .SetToTesting(MockToDoItemBuilder
-      .SetId("7")
-      .SetName("Testing Task")
-      .SetDescription("This is a testing task")
-      .SetToDoItemStatus(ToDoItemStatus.Testing)
-      .SetCompleted(false)
-      .Build())
-    .SetToDone(MockToDoItemBuilder
-      .SetId("8")
-      .SetName("Done Task")
-      .SetDescription("This is a done task")
-      .SetToDoItemStatus(ToDoItemStatus.Done)
-      .SetCompleted(false)
-      .Build());
-
-  return list.Build();
+  return MockToDoGenerate({createdCount: 3, inWorkCount: 2, inReviewCount: 1, testingCount: 4, doneCount: 5});
 }
-
 const ToDoApp = () => {
 
   const [todoItems, setToDoItems] = useState<ToDoItemLists>(CreateMockToDoItem());
@@ -84,9 +21,7 @@ const ToDoApp = () => {
       <Header setIsCreatingModalOpen={setIsCreatingModalOpen} />
       
       {isCreatingModalOpen && 
-        <ModalWindow onClose={() => setIsCreatingModalOpen(false)} isOpen={isCreatingModalOpen}>
-          <CreateCardForm />
-        </ModalWindow>
+        <CreateCardForm onClose={() => setIsCreatingModalOpen(false)} isOpen={isCreatingModalOpen} />
       }
 
       <ToDoList
@@ -107,3 +42,4 @@ export const App = () => (
 );
 
 
+// See UseContext for configuration of modal window in the future

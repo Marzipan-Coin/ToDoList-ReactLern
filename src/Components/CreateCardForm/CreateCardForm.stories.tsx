@@ -12,6 +12,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    onClose: () => { alert("Form closed") }
+    onClose: () => { alert("Form closed") },
+    isOpen: true
   }
 };

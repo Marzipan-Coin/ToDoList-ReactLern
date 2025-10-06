@@ -1,8 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 export default function ModalWindow({ isOpen, onClose, children }: { isOpen: boolean, onClose: () => void, children: React.ReactNode }) {
     const dialogRef = useRef<HTMLDivElement>(null);
+
     // Escape key handler to close the modal\
     useEffect(() => {
         if (!isOpen) return;
