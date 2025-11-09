@@ -10,7 +10,7 @@ const Card = ({ id, title, description, status, onUpdate, onPromote, onDemote, o
 
     const handleSave = () => {
         if (onUpdate) {
-            onUpdate({ id, title: editedTitle, description: editedDescription, status });
+            onUpdate(id, { title: editedTitle, description: editedDescription });
         }
         setIsCardUpdating(false);
     };
@@ -59,7 +59,7 @@ const Card = ({ id, title, description, status, onUpdate, onPromote, onDemote, o
                 )}
 
                 {status > 1 && (<button
-                    onClick={() => onDemote && onDemote({ id, title, description, status })}
+                    onClick={() => onDemote && onDemote(id)}
                     className="text-sm text-green-600 hover:text-green-700"
                 >
                     ◀
@@ -69,7 +69,7 @@ const Card = ({ id, title, description, status, onUpdate, onPromote, onDemote, o
                 <span className={`card-status status-${status}`}>Status: {statusLabel}</span>
 
                 {status < 4 && (<button
-                    onClick={() => onPromote && onPromote({ id, title, description, status })}
+                    onClick={() => onPromote && onPromote(id)}
                     className="text-sm text-green-600 hover:text-green-700"
                 >
                     ▶
@@ -79,7 +79,7 @@ const Card = ({ id, title, description, status, onUpdate, onPromote, onDemote, o
                 <p></p>
 
                 <button
-                    onClick={() => onDelete && onDelete({ id, title, description, status })}
+                    onClick={() => onDelete && onDelete(id)}
                     className="text-sm text-green-600 hover:text-green-700"
                 >
                     ❌

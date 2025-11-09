@@ -5,29 +5,32 @@ import Header from './shared/ui/Header/Header';
 import CardTable from './features/CardTable/CardTable';
 import Footer from './shared/ui/Footer/Footer';
 import { CardProperties } from './features/Card/Card.types';
+import { CardChangePayload } from './shared/types/CardTypes';
 
 const StartData = {...MockData};
 
 const ToDoApp = () => {
   const [columns, setColumns] = useState({...StartData});
 
-  const handleUpdateCard = (updated: CardProperties) => {
-    const column = columns.columns[updated.status - 1];
-    const cardIndex = column.cards.findIndex(card => card.id === updated.id);
+  const handleUpdateCard = (id: string, changes: CardChangePayload) => {
+    const column = columns.columns[columns.columns.findIndex(col => col.cards.some(card => card.id === id))];
+    const cardIndex = column.cards.findIndex(card => card.id === id);
+    
 
     if (cardIndex !== -1) {
-      column.cards[cardIndex] = { ...updated };
+      column.cards[cardIndex] = { ...column.cards[cardIndex], ...changes };
     }
 
     setColumns({ ...columns })
   };
 
-  const handlePromoteCard = (promotedCard: CardProperties) => {
+  const handlePromoteCard = (id: string) => {
+    const column = columns.columns[columns.columns.findIndex(col => col.cards.some(card => card.id === id))];
+    const cardIndex = column.cards.findIndex(card => card.id === id);
+    if (cardIndex === -1) return;
+    const promotedCard = column.cards[cardIndex];
     const previousStatus = promotedCard.status;
     promotedCard.status += 1;
-
-    const column = columns.columns[previousStatus - 1];
-    const cardIndex = column.cards.findIndex(card => card.id === promotedCard.id);
 
     if (cardIndex !== -1) {
       const newColumn = columns.columns[promotedCard.status - 1];
@@ -39,12 +42,14 @@ const ToDoApp = () => {
     setColumns({ ...columns })
   };
 
-  const handleDemoteCard = (demotedCard: CardProperties) => {
+  const handleDemoteCard = (id: string) => {
+    const column = columns.columns[columns.columns.findIndex(col => col.cards.some(card => card.id === id))];
+    const cardIndex = column.cards.findIndex(card => card.id === id);
+
+    if (cardIndex === -1) return;
+    const demotedCard = column.cards[cardIndex];
     const previousStatus = demotedCard.status;
     demotedCard.status -= 1;
-
-    const column = columns.columns[previousStatus - 1];
-    const cardIndex = column.cards.findIndex(card => card.id === demotedCard.id);
 
     if (cardIndex !== -1) {
       const newColumn = columns.columns[demotedCard.status - 1];
@@ -56,9 +61,9 @@ const ToDoApp = () => {
     setColumns({ ...columns })
   };
 
-  const handleDeleteCard = (deletedCard: CardProperties) => {
-    const column = columns.columns[deletedCard.status - 1];
-    const cardIndex = column.cards.findIndex(card => card.id === deletedCard.id);
+  const handleDeleteCard = (id: string) => {
+    const column = columns.columns[columns.columns.findIndex(col => col.cards.some(card => card.id === id))];
+    const cardIndex = column.cards.findIndex(card => card.id === id);
 
     if (cardIndex !== -1) {
       column.cards.splice(cardIndex, 1);
@@ -73,7 +78,6 @@ const ToDoApp = () => {
       title: 'New Card',
       description: 'Description of the new card',
       status: 1,
-      onUpdate: handleUpdateCard,
     }
     columns.columns[0].cards.push(newCard);
     setColumns({ ...columns });

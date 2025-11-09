@@ -1,10 +1,10 @@
-import { CardBaseProperties } from "../../shared/types/CardTypes";
+import { CardBaseProperties, CardChangePayload } from "../../shared/types/CardTypes";
 import { CardColumnProperties } from "../CardColumn/CardColumn.types";
 
 export type CardTableProperties = {
     columns: CardColumnProperties[];
-    onCardUpdate?: (updatedCard: CardBaseProperties) => void;
-    onCardPromote?: (promotedCard: CardBaseProperties) => void;
-    onCardDemote?: (demotedCard: CardBaseProperties) => void;
-    onCardDelete?: (deletedCard: CardBaseProperties) => void;
+    onCardUpdate?: (id: string, changes: CardChangePayload) => void;
+    onCardPromote?: (id: string) => void;
+    onCardDemote?: (id: string) => void;
+    onCardDelete?: (id: string) => void;
 };

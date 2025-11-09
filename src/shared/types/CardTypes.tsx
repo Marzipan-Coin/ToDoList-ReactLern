@@ -10,6 +10,11 @@ export type CardBaseProperties = {
     status: CardStatus;
 };
 
+export type CardChangePayload = {
+    title: string;
+    description: string;
+};
+
 export const CardStatusLabels: Record<CardStatus, string> = {
     1: "Created",
     2: "In Progress",

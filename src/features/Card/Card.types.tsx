@@ -7,11 +7,16 @@ export type CardStyleKeys =
     | "Content"
     | "Footer";
 
+export type CardChangePayload = {
+    title: string;
+    description: string;
+};
+
 export type CardProperties = CardBaseProperties & { 
-    onUpdate?: (updatedCard: CardBaseProperties) => void;  
-    onPromote?: (promotedCard: CardBaseProperties) => void;
-    onDemote?: (demotedCard: CardBaseProperties) => void;
-    onDelete?: (deletedCard: CardBaseProperties) => void;
+    onUpdate?: (id: string, changes: CardChangePayload) => void;  
+    onPromote?: (id: string) => void;
+    onDemote?: (id: string) => void;
+    onDelete?: (id: string) => void;
 };
 
 export const CardStatusLabels: Record<CardStatus, string> = {
