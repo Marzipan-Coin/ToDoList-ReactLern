@@ -1,45 +1,108 @@
 import './index.css';
-import ToDoItemLists from './Components/ToDoItem/ToDoItemList';
-import ToDoList from './Components/ToDoList/ToDoList';
-import Header from './Components/Header/Header';
 import { useState } from 'react';
-import CreateCardForm from './Components/CreateCardForm/CreateCardForm';
-import Footer from './Components/Footer/Footer';
-import MockToDoGenerate from './Components/ToDoItem/MockToDoGenerator';
+import { MockData } from './shared/Mock/Data';
+import Header from './shared/ui/Header/Header';
+import CardTable from './features/CardTable/CardTable';
+import Footer from './shared/ui/Footer/Footer';
+import { CardProperties } from './features/Card/Card.types';
 
-const CreateMockToDoItem = () : ToDoItemLists => {
-  return MockToDoGenerate({createdCount: 3, inWorkCount: 2, inReviewCount: 1, testingCount: 4, doneCount: 5});
-}
+const StartData = {...MockData};
+
 const ToDoApp = () => {
+  const [columns, setColumns] = useState({...StartData});
 
-  const [todoItems, setToDoItems] = useState<ToDoItemLists>(CreateMockToDoItem());
-  const [isCreatingModalOpen, setIsCreatingModalOpen] = useState<boolean>(false);
+  const handleUpdateCard = (updated: CardProperties) => {
+    const column = columns.columns[updated.status - 1];
+    const cardIndex = column.cards.findIndex(card => card.id === updated.id);
 
-  return(
-    <>
-    <div className='min-h-screen bg-slate-900 dark:bg-gray-900 text-gray-900'>
-      <Header setIsCreatingModalOpen={setIsCreatingModalOpen} />
-      
-      {isCreatingModalOpen && 
-        <CreateCardForm onClose={() => setIsCreatingModalOpen(false)} isOpen={isCreatingModalOpen} />
-      }
+    if (cardIndex !== -1) {
+      column.cards[cardIndex] = { ...updated };
+    }
 
-      <ToDoList
-        created={todoItems.created}
-        inWork={todoItems.inWork}
-        inReview={todoItems.inReview}
-        testing={todoItems.testing}
-        done={todoItems.done}
+    setColumns({ ...columns })
+  };
+
+  const handlePromoteCard = (promotedCard: CardProperties) => {
+    const previousStatus = promotedCard.status;
+    promotedCard.status += 1;
+
+    const column = columns.columns[previousStatus - 1];
+    const cardIndex = column.cards.findIndex(card => card.id === promotedCard.id);
+
+    if (cardIndex !== -1) {
+      const newColumn = columns.columns[promotedCard.status - 1];
+      handleAddCard(promotedCard);
+
+      column.cards.splice(cardIndex, 1);
+    }
+
+    setColumns({ ...columns })
+  };
+
+  const handleDemoteCard = (demotedCard: CardProperties) => {
+    const previousStatus = demotedCard.status;
+    demotedCard.status -= 1;
+
+    const column = columns.columns[previousStatus - 1];
+    const cardIndex = column.cards.findIndex(card => card.id === demotedCard.id);
+
+    if (cardIndex !== -1) {
+      const newColumn = columns.columns[demotedCard.status - 1];
+      handleAddCard(demotedCard);
+
+      column.cards.splice(cardIndex, 1);
+    }
+
+    setColumns({ ...columns })
+  };
+
+  const handleDeleteCard = (deletedCard: CardProperties) => {
+    const column = columns.columns[deletedCard.status - 1];
+    const cardIndex = column.cards.findIndex(card => card.id === deletedCard.id);
+
+    if (cardIndex !== -1) {
+      column.cards.splice(cardIndex, 1);
+    }
+
+    setColumns({ ...columns });
+  };
+
+  const handleAddCard = () => {
+    const newCard: CardProperties = {
+      id: `card-${Date.now()}`,
+      title: 'New Card',
+      description: 'Description of the new card',
+      status: 1,
+      onUpdate: handleUpdateCard,
+    }
+    columns.columns[0].cards.push(newCard);
+    setColumns({ ...columns });
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white">
+      <Header
+        title="CardBoard"
+        logoUrl="src/logo192.png"
+        onCreateCard={handleAddCard}
       />
-      <Footer />
+
+      <main className="flex-1 overflow-auto px-4 py-6">
+        <CardTable columns={columns.columns} onCardUpdate={handleUpdateCard} onCardPromote={handlePromoteCard} onCardDemote={handleDemoteCard} onCardDelete={handleDeleteCard} />
+      </main>
+
+      <Footer
+        links={[
+          { label: 'GitHub', url: 'https://github.com/Marzipan-Coin' },
+          { label: 'About', url: '/about' },
+        ]}
+        authorName="Kirill Borisenko"
+        year={2025}
+        copyright="CardBoard"
+      />
     </div>
-    </>
-  ); 
+  );
 };
-
 export const App = () => (
-    <ToDoApp />
+  <ToDoApp />
 );
-
-
-// See UseContext for configuration of modal window in the future
