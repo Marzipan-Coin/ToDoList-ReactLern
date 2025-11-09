@@ -31,7 +31,7 @@ const ToDoApp = () => {
 
     if (cardIndex !== -1) {
       const newColumn = columns.columns[promotedCard.status - 1];
-      handleAddCard(promotedCard);
+      handleCreateCard(promotedCard);
 
       column.cards.splice(cardIndex, 1);
     }
@@ -48,7 +48,7 @@ const ToDoApp = () => {
 
     if (cardIndex !== -1) {
       const newColumn = columns.columns[demotedCard.status - 1];
-      handleAddCard(demotedCard);
+      handleCreateCard(demotedCard);
 
       column.cards.splice(cardIndex, 1);
     }
@@ -76,6 +76,12 @@ const ToDoApp = () => {
       onUpdate: handleUpdateCard,
     }
     columns.columns[0].cards.push(newCard);
+    setColumns({ ...columns });
+  };
+
+  const handleCreateCard = (newCard: CardProperties) => {
+    const column = columns.columns[newCard.status - 1];
+    column.cards.push(newCard);
     setColumns({ ...columns });
   };
 
