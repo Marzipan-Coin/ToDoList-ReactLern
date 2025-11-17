@@ -12,13 +12,16 @@ export type CardChangePayload = {
     description: string;
 };
 
+export type CardViewProperties = Omit<CardBaseProperties, "id">;
+
 export type CardProperties = CardBaseProperties & { 
-    onUpdate?: (id: string, changes: CardChangePayload) => void;  
-    onPromote?: (id: string) => void;
-    onDemote?: (id: string) => void;
-    onDelete?: (id: string) => void;
+    onUpdate: (id: string, changes: CardChangePayload) => void;  
+    onPromote: (id: string) => void;
+    onDemote: (id: string) => void;
+    onDelete: (id: string) => void;
 };
 
+// Delete
 export const CardStatusLabels: Record<CardStatus, string> = {
     1: "Created",
     2: "In Progress",

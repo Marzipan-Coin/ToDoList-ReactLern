@@ -5,7 +5,7 @@ import Header from './shared/ui/Header/Header';
 import CardTable from './features/CardTable/CardTable';
 import Footer from './shared/ui/Footer/Footer';
 import { CardProperties } from './features/Card/Card.types';
-import { CardChangePayload } from './shared/types/CardTypes';
+import { CardBaseProperties, CardChangePayload } from './shared/types/CardTypes';
 
 const StartData = {...MockData};
 
@@ -73,21 +73,24 @@ const ToDoApp = () => {
   };
 
   const handleAddCard = () => {
-    const newCard: CardProperties = {
+    const newCard: CardBaseProperties = {
       id: `card-${Date.now()}`,
       title: 'New Card',
       description: 'Description of the new card',
       status: 1,
     }
+
     columns.columns[0].cards.push(newCard);
     setColumns({ ...columns });
   };
 
-  const handleCreateCard = (newCard: CardProperties) => {
+  const handleCreateCard = (newCard: CardBaseProperties) => {
     const column = columns.columns[newCard.status - 1];
     column.cards.push(newCard);
     setColumns({ ...columns });
   };
+
+  // TODO: Extract handles to the hooks
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white">
@@ -98,7 +101,26 @@ const ToDoApp = () => {
       />
 
       <main className="flex-1 overflow-auto px-4 py-6">
-        <CardTable columns={columns.columns} onCardUpdate={handleUpdateCard} onCardPromote={handlePromoteCard} onCardDemote={handleDemoteCard} onCardDelete={handleDeleteCard} />
+        {/* <CardTable columns={columns.columns} onCardUpdate={handleUpdateCard} onCardPromote={handlePromoteCard} onCardDemote={handleDemoteCard} onCardDelete={handleDeleteCard} /> */}
+        <CardTable>
+          {columns.columns.map((column, colIndex) => (
+                 <CardTable.Column key={colIndex} title={column.title}>
+                    {column.cards.map((card) => (
+                      <CardTable.Column.Card
+                        key={card.id}
+                        id={card.id}
+                        title={card.title}
+                        description={card.description}
+                        status={card.status}
+                        onUpdate={handleUpdateCard}
+                        onPromote={handlePromoteCard}
+                        onDelete={handleDeleteCard}
+                        onDemote={handleDemoteCard}
+                      />
+                    ))}
+                  </CardTable.Column>
+          ))}
+        </CardTable>
       </main>
 
       <Footer

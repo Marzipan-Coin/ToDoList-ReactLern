@@ -15,6 +15,7 @@ export type CardChangePayload = {
     description: string;
 };
 
+// TODO: Change to enum
 export const CardStatusLabels: Record<CardStatus, string> = {
     1: "Created",
     2: "In Progress",
