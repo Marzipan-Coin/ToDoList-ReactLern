@@ -1,3 +1,4 @@
+import Card from "../Card/Card";
 import CardColumn from "../CardColumn/CardColumn";
 
 const CardTable = ({children} : {children: React.ReactNode}) => {
@@ -9,5 +10,6 @@ const CardTable = ({children} : {children: React.ReactNode}) => {
 };
 
 CardTable.Column = CardColumn;
+CardTable.Card = Card;
 
 export default CardTable;

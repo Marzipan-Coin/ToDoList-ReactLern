@@ -1,6 +1,4 @@
 import Card from "../Card/Card";
-import { CardColumnProperties } from "./CardColumn.types";
-// TODO: Make it like in CardTable with children prop
 
 const CardColumn = ({title, children} : {title: string, children: React.ReactNode}) => {
 

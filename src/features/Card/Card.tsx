@@ -47,33 +47,32 @@ const Card = ({ id, title, description, status, onUpdate, onPromote, onDemote, o
     const [editedTitle, setEditedTitle] = useState(title);
     const [editedDescription, setEditedDescription] = useState(description);
 
-    const handleSave = () => {
+    const editContent = isCardUpdating ? "✅" : "✏️";
+    const editClassname = isCardUpdating ? "text-sm text-green-600 hover:text-green-700" : "text-sm text-gray-400 hover:text-blue-600";
+    
+    const onEdit = () => {
+        setIsCardUpdating(!isCardUpdating);
+        if (!isCardUpdating) return; 
+
         onUpdate(id, { title: editedTitle, description: editedDescription });
-        setIsCardUpdating(false);
     };
+
+    const CardContent = () => isCardUpdating ?
+                    <CardForm editedDescription={editedDescription} editedTitle={editedTitle} cardHeaderStyle={cardHeaderStyle} setEditedDescription={setEditedDescription} setEditedTitle={setEditedTitle} /> :
+                    <View description={description} title={title} status={status} />;
 
     return (
         <div className={`${cardStyles.Card} relative`} id={id}>
             <div className={cardStyles.Content}>
                 <div className="flex justify-end mb-2">
                         <Button 
-                         onClick={() => setIsCardUpdating(true)}
-                         className="text-sm text-gray-400 hover:text-blue-600"
-                         content="✏️"
-                         isEnabled={!isCardUpdating}/>
-
-                        <Button
-                        onClick={handleSave}
-                        className="text-sm text-green-600 hover:text-green-700"
-                        content="✅"
-                        isEnabled={isCardUpdating} />
+                         onClick={onEdit}
+                         className={editClassname}
+                         content={editContent}
+                         isEnabled={true}/>
                 </div>
 
-                {!isCardUpdating ? (
-                    <View description={description} title={title} status={status} />
-                ) : (
-                    <CardForm editedDescription={editedDescription} editedTitle={editedTitle} cardHeaderStyle={cardHeaderStyle} setEditedDescription={setEditedDescription} setEditedTitle={setEditedTitle} />
-                )}
+                {CardContent()}
 
                 <Button 
                     onClick={() => onDemote(id)}
