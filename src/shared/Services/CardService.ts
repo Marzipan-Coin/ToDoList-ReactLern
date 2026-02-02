@@ -18,8 +18,8 @@ const CardService = {
         column.cards.push(card);
     },
     UpdateCard(id: string, changes: CardChangePayload) {
-
-        const column = this.data.columns[this.data.columns.findIndex(col => col.cards.some(card => card.id === id))];
+        const columnIndex = this.data.columns.findIndex(col => col.cards.some(card => card.id === id));
+        const column = this.data.columns[columnIndex];
         const cardIndex = column.cards.findIndex(card => card.id === id);
 
         if (cardIndex !== -1) {
@@ -29,7 +29,8 @@ const CardService = {
         return { ...this.data };
     },
     PromoteCard(id: string) {
-        const column = this.data.columns[this.data.columns.findIndex(col => col.cards.some(card => card.id === id))];
+        const columnIndex = this.data.columns.findIndex(col => col.cards.some(card => card.id === id));
+        const column = this.data.columns[columnIndex];
         const cardIndex = column.cards.findIndex(card => card.id === id);
         if (cardIndex === -1) return { ...this.data };
         const promotedCard = column.cards[cardIndex];
@@ -46,7 +47,8 @@ const CardService = {
         return { ...this.data };
     },
     DemoteCard(id: string) {
-        const column = this.data.columns[this.data.columns.findIndex(col => col.cards.some(card => card.id === id))];
+        const columnIndex = this.data.columns.findIndex(col => col.cards.some(card => card.id === id));
+        const column = this.data.columns[columnIndex];
         const cardIndex = column.cards.findIndex(card => card.id === id);
 
         if (cardIndex === -1) return { ...this.data };
@@ -64,7 +66,8 @@ const CardService = {
         return { ...this.data };
     },
     DeleteCard(id: string) {
-        const column = this.data.columns[this.data.columns.findIndex(col => col.cards.some(card => card.id === id))];
+        const columnIndex = this.data.columns.findIndex(col => col.cards.some(card => card.id === id));
+        const column = this.data.columns[columnIndex];
         const cardIndex = column.cards.findIndex(card => card.id === id);
 
         if (cardIndex !== -1) {

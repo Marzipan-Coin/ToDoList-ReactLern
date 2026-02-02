@@ -1,16 +1,14 @@
 import './index.css';
-import { useState } from 'react';
+import { use, useState } from 'react';
 import Header from './shared/ui/Header/Header';
 import CardTable from './features/CardTable/CardTable';
 import Footer from './shared/ui/Footer/Footer';
-import CardService from './shared/Services/CardService';
-import useAppHandlers from './App.hooks';
+import useAppHandlers from './CardStatement.hooks';
+import { CardColumnProperties } from './features/CardColumn/CardColumn.types';
 
-const cardService = CardService;
 
 const ToDoApp = () => {
-  const [columns, setColumns] = useState({...cardService.data});
-  const handlers = useAppHandlers({setColumns, cardService});
+  const handlers = useAppHandlers();
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white">
@@ -22,7 +20,7 @@ const ToDoApp = () => {
 
       <main className="flex-1 overflow-auto px-4 py-6">
         <CardTable>
-          {columns.columns.map((column, colIndex) => (
+          {handlers.handleCards().map((column, colIndex) => (
                  <CardTable.Column key={colIndex} title={column.title}>
                     {column.cards.map((card) => (
                       <CardTable.Card
