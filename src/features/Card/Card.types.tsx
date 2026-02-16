@@ -8,6 +8,7 @@ export type CardStyleKeys =
     | "Footer";
 
 export type CardChangePayload = {
+    id: string;
     title: string;
     description: string;
 };
@@ -15,7 +16,7 @@ export type CardChangePayload = {
 export type CardViewProperties = Omit<CardBaseProperties, "id">;
 
 export type CardProperties = CardBaseProperties & { 
-    onUpdate: (id: string, changes: CardChangePayload) => void;  
+    onUpdate: (changes: CardChangePayload) => void;  
     onPromote: (id: string) => void;
     onDemote: (id: string) => void;
     onDelete: (id: string) => void;

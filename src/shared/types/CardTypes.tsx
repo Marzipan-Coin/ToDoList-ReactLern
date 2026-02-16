@@ -11,6 +11,7 @@ export type CardBaseProperties = {
 };
 
 export type CardChangePayload = {
+    id: string;
     title: string;
     description: string;
 };

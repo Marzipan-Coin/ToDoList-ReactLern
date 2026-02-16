@@ -2,6 +2,7 @@ import { CardTableProperties } from "../../features/CardTable/CardTable.types";
 import { CardStatusLabels } from "../types/CardTypes";
 
 export const MockData: CardTableProperties = {
+    id: 'table-1',
     columns: [
         {
             title: CardStatusLabels[1],

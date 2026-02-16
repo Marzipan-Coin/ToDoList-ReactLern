@@ -20,7 +20,7 @@ const ToDoApp = () => {
 
       <main className="flex-1 overflow-auto px-4 py-6">
         <CardTable>
-          {handlers.handleCards().map((column, colIndex) => (
+          {handlers.handleCards().columns.map((column, colIndex) => (
                  <CardTable.Column key={colIndex} title={column.title}>
                     {column.cards.map((card) => (
                       <CardTable.Card
