@@ -1,54 +1,35 @@
-import { SetStateAction, useEffect, useState } from "react";
-import CardService from "./shared/Services/CardService";
-import { CardChangePayload } from "./shared/types/CardTypes";
-import { CardColumnProperties } from "./features/CardColumn/CardColumn.types";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "../src/Redux/Store/Store";
+import { add, update, promote, demote, deleteCard } from "../src/Redux/features/CardSlice";
+import { CardChangePayload } from "../src/shared/types/CardTypes";
+
 
 const useAppHandlers = () => {
-  const cardService = CardService;
-
-  const [cards, setColumns] = useState<CardColumnProperties[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+  const cardsState = useSelector((state: RootState) => state.cards);
   
-  const handleUpdateCard = (id: string, changes: CardChangePayload) => {
-    const updatedData = cardService.UpdateCard(id, changes);
-
-    handleGetCards();
+  const handleUpdateCard = (changes: CardChangePayload) => {
+    dispatch(update({...changes }));
   };
   const handlePromoteCard = (id: string) => {
-    const promotedData = cardService.PromoteCard(id);
-
-    handleGetCards();
+    dispatch(promote(id));
   };
 
   const handleDemoteCard = (id: string) => {
-    const demotedData = cardService.DemoteCard(id);
-
-    handleGetCards();
+    dispatch(demote(id));
   };
 
   const handleDeleteCard = (id: string) => {
-    const deletedData = cardService.DeleteCard(id);
-
-    handleGetCards();
+    dispatch(deleteCard(id));
   };
 
   const handleAddCard = () => {
-    const addedData = cardService.AddCard();
-    
-    handleGetCards();
+    dispatch(add());
   };
 
-  const handleGetCards = () : void => {
-    setColumns([...cardService.data.columns]);
-  };
+  const handleCards = () => cardsState.value;
 
-  const handleCards = () => {
-    return cards;
-  }
-
-  useEffect(() => handleGetCards(), []);
-
-
-  return { handleUpdateCard, handlePromoteCard, handleDemoteCard, handleDeleteCard, handleAddCard, handleGetCards, handleCards };
+  return { handleUpdateCard, handlePromoteCard, handleDemoteCard, handleDeleteCard, handleAddCard, handleCards };
 };
 
 export default useAppHandlers;

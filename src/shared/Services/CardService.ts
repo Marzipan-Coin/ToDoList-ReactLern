@@ -1,3 +1,4 @@
+import { CardColumnProperties } from "../../features/CardColumn/CardColumn.types";
 import { CardTableProperties } from "../../features/CardTable/CardTable.types";
 import { MockData } from "../Mock/Data";
 import { CardBaseProperties, CardChangePayload } from "../types/CardTypes";
@@ -14,67 +15,94 @@ type CardServiceType = {
 const CardService = {
     data: { ...MockData },
     CreateCard(card: CardBaseProperties) {
-        const column = this.data.columns[card.status - 1];
-        column.cards.push(card);
+        const newColumns = this.data.columns.map((col, idx) =>
+            idx === card.status - 1
+                ? { ...col, cards: [...col.cards, card] }
+                : col
+        );
+        return { ...this.data, columns: newColumns };
+
     },
     UpdateCard(id: string, changes: CardChangePayload) {
-        const columnIndex = this.data.columns.findIndex(col => col.cards.some(card => card.id === id));
-        const column = this.data.columns[columnIndex];
-        const cardIndex = column.cards.findIndex(card => card.id === id);
+        const newColumns = this.data.columns.map(col => ({
+            ...col,
+            cards: col.cards.map(card =>
+                card.id === id ? { ...card, ...changes } : card
+            ),
+        }));
+        return { ...this.data, columns: newColumns };
 
-        if (cardIndex !== -1) {
-            column.cards[cardIndex] = { ...column.cards[cardIndex], ...changes };
-        }
-
-        return { ...this.data };
     },
     PromoteCard(id: string) {
         const columnIndex = this.data.columns.findIndex(col => col.cards.some(card => card.id === id));
+        if (columnIndex === -1) return { ...this.data };
+
         const column = this.data.columns[columnIndex];
+        if (!column) return { ...this.data };
+
         const cardIndex = column.cards.findIndex(card => card.id === id);
         if (cardIndex === -1) return { ...this.data };
-        const promotedCard = column.cards[cardIndex];
-        const previousStatus = promotedCard.status;
+
+        const promotedCard: CardBaseProperties = { ...column.cards[cardIndex] };
         promotedCard.status += 1;
 
-        if (cardIndex !== -1) {
-            const newColumn = this.data.columns[promotedCard.status - 1];
-            this.CreateCard(promotedCard);
+        const newColumns = this.data.columns.map((col, idx) => {
+            if (idx === columnIndex) {
+                return { ...col, cards: col.cards.filter((_, i) => i !== cardIndex) };
+            }
+            if (idx === promotedCard.status - 1) {
+                return { ...col, cards: [...col.cards, promotedCard] };
+            }
+            return col;
+        });
 
-            column.cards.splice(cardIndex, 1);
-        }
 
-        return { ...this.data };
+        return { ...this.data, columns: newColumns };
     },
     DemoteCard(id: string) {
         const columnIndex = this.data.columns.findIndex(col => col.cards.some(card => card.id === id));
-        const column = this.data.columns[columnIndex];
-        const cardIndex = column.cards.findIndex(card => card.id === id);
+        if (columnIndex === -1) return { ...this.data };
 
+        const column = this.data.columns[columnIndex];
+        if (!column) return { ...this.data };
+
+        const cardIndex = column.cards.findIndex(card => card.id === id);
         if (cardIndex === -1) return { ...this.data };
-        const demotedCard = column.cards[cardIndex];
-        const previousStatus = demotedCard.status;
+
+        const demotedCard = { ...column.cards[cardIndex] };
         demotedCard.status -= 1;
 
-        if (cardIndex !== -1) {
-            const newColumn = this.data.columns[demotedCard.status - 1];
-            this.CreateCard(demotedCard);
+        const newColumns = this.data.columns.map((col, idx) => {
+            if (idx === columnIndex) {
+                return { ...col, cards: col.cards.filter((_, i) => i !== cardIndex) };
+            }
+            if (idx === demotedCard.status - 1) {
+                return { ...col, cards: [...col.cards, demotedCard] };
+            }
+            return col;
+        });
 
-            column.cards.splice(cardIndex, 1);
-        }
-
-        return { ...this.data };
+        return { ...this.data, columns: newColumns };
     },
     DeleteCard(id: string) {
         const columnIndex = this.data.columns.findIndex(col => col.cards.some(card => card.id === id));
+        if (columnIndex === -1) return { ...this.data };
+
         const column = this.data.columns[columnIndex];
+        if (!column) return { ...this.data };
+
         const cardIndex = column.cards.findIndex(card => card.id === id);
+        if (cardIndex === -1) return { ...this.data };
 
-        if (cardIndex !== -1) {
-            column.cards.splice(cardIndex, 1);
-        }
+        const newColumns = this.data.columns.map((col, idx) => {
+            if (idx !== columnIndex) return col;
+            return {
+                ...col,
+                cards: col.cards.filter(card => card.id !== id),
+            };
+        });
 
-        return { ...this.data };
+        return { ...this.data, columns: newColumns };
     },
     AddCard() {
         const newCard: CardBaseProperties = {
@@ -82,11 +110,13 @@ const CardService = {
             title: 'New Card',
             description: 'Description of the new card',
             status: 1,
-        }
+        };
 
-        this.data.columns[0].cards.push(newCard);
+        const newColumns = this.data.columns.map((col, idx) =>
+            idx === 0 ? { ...col, cards: [...col.cards, newCard] } : col
+        );
 
-        return { ...this.data };
+        return { ...this.data, columns: newColumns };
     }
 };
 

@@ -54,7 +54,7 @@ const Card = ({ id, title, description, status, onUpdate, onPromote, onDemote, o
         setIsCardUpdating(!isCardUpdating);
         if (!isCardUpdating) return; 
 
-        onUpdate(id, { title: editedTitle, description: editedDescription });
+        onUpdate({ id, title: editedTitle, description: editedDescription });
     };
 
     const CardContent = () => isCardUpdating ?

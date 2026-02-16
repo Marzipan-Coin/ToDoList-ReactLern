@@ -2,6 +2,7 @@ import { CardBaseProperties, CardChangePayload } from "../../shared/types/CardTy
 import { CardColumnProperties } from "../CardColumn/CardColumn.types";
 
 export type CardTableProperties = {
+    id: string;
     columns: CardColumnProperties[];
     onCardUpdate?: (id: string, changes: CardChangePayload) => void;
     onCardPromote?: (id: string) => void;
